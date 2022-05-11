@@ -9,5 +9,11 @@ namespace ISVR {
 
         public float Value => value;
         public bool IsBug => isBug;
+
+        private void Start() {
+            if (IsBug) {
+                GameSetup.Instance.AddBug(this);
+            }
+        }
     }
 }

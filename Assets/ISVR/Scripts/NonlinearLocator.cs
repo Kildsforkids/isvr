@@ -8,6 +8,8 @@ namespace ISVR {
 
         [SerializeField] private string defaultDebugText;
         [SerializeField] private Indicator indicator;
+        [SerializeField] private Bar bar;
+        [SerializeField] private Vector2 errorRate;
 
         public bool IsActive => _isActive;
 
@@ -28,7 +30,6 @@ namespace ISVR {
             StartRaycaster();
             indicator?.Activate();
             _isActive = true;
-            Debug.Log("Turned On");
         }
 
         public void TurnOff() {
@@ -36,7 +37,6 @@ namespace ISVR {
             UpdateDebugText(defaultDebugText);
             indicator?.Deactivate();
             _isActive = false;
-            Debug.Log("Turned Off");
         }
 
         public void Toggle() {
@@ -66,16 +66,21 @@ namespace ISVR {
         private void CalculateImpact(RaycastHit[] hits) {
             float average = 0f;
             int electricalCount = 0;
+            float maxValue = 0;
             foreach (var hit in hits) {
                 if (hit.transform.TryGetComponent<Electrical>(out Electrical electrical)) {
-                    average += electrical.Value / hit.distance;
+                    average += electrical.Value;
+                    maxValue = electrical.Value > maxValue ? electrical.Value : maxValue;
+                    Debug.Log(hit.distance);
                     electricalCount++;
                 }
             }
             if (electricalCount > 0) {
-                average /= electricalCount;
+                average /= electricalCount / maxValue;
             }
-            UpdateDebugText(average.ToString("F1"));
+            average = Mathf.Clamp01(average + Random.Range(errorRate.x, errorRate.y));
+            bar.SetValue(average);
+            // UpdateDebugText(average.ToString("F1"));
         }
     }
 }

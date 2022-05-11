@@ -33,18 +33,6 @@ namespace ISVR.Core {
             );
 
             OnRayReturn?.Invoke(hits);
-            // if (Physics.SphereCast(
-            //     origin.position,
-            //     radius,
-            //     origin.forward,
-            //     out RaycastHit hit,
-            //     distance,
-            //     layerMask)) {
-
-            //     OnRayReturn?.Invoke(hit.transform.name);
-            // } else {
-            //     OnRayReturn?.Invoke(null);
-            // }
         }
 
         public void CastRayInfinite() {
