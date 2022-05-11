@@ -12,7 +12,8 @@ namespace ISVR.Core {
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float castRate = 1f;
 
-        public UnityEvent<string> OnRayReturn;
+        public UnityEvent<RaycastHit[]> OnRayReturn;
+        public Transform Origin => origin;
 
         private Coroutine _castRayCoroutine;
 
@@ -23,18 +24,27 @@ namespace ISVR.Core {
         }
         
         public void CastRayOnce() {
-            if (Physics.SphereCast(
+            RaycastHit[] hits = Physics.SphereCastAll(
                 origin.position,
                 radius,
                 origin.forward,
-                out RaycastHit hit,
                 distance,
-                layerMask)) {
+                layerMask
+            );
 
-                OnRayReturn?.Invoke(hit.transform.name);
-            } else {
-                OnRayReturn?.Invoke(null);
-            }
+            OnRayReturn?.Invoke(hits);
+            // if (Physics.SphereCast(
+            //     origin.position,
+            //     radius,
+            //     origin.forward,
+            //     out RaycastHit hit,
+            //     distance,
+            //     layerMask)) {
+
+            //     OnRayReturn?.Invoke(hit.transform.name);
+            // } else {
+            //     OnRayReturn?.Invoke(null);
+            // }
         }
 
         public void CastRayInfinite() {

@@ -21,7 +21,7 @@ namespace ISVR {
         }
 
         private void Start() {
-            _raycaster.OnRayReturn.AddListener(UpdateDebugText);
+            _raycaster.OnRayReturn.AddListener(CalculateImpact);
         }
 
         public void TurnOn() {
@@ -61,6 +61,21 @@ namespace ISVR {
             } else {
                 _commandPanel.UpdateDebugText(text);
             }
+        }
+
+        private void CalculateImpact(RaycastHit[] hits) {
+            float average = 0f;
+            int electricalCount = 0;
+            foreach (var hit in hits) {
+                if (hit.transform.TryGetComponent<Electrical>(out Electrical electrical)) {
+                    average += electrical.Value / hit.distance;
+                    electricalCount++;
+                }
+            }
+            if (electricalCount > 0) {
+                average /= electricalCount;
+            }
+            UpdateDebugText(average.ToString("F1"));
         }
     }
 }
