@@ -144,7 +144,7 @@ namespace Oculus.Interaction
             this.EndStart(ref _started);
         }
 
-        public void AddGrabPoint(int id, Pose pose)
+        public virtual void AddGrabPoint(int id, Pose pose)
         {
             // If the transfer hand on second grab flag is on, we ignore any subsequent events
             if (_grabPoints.Count == 1 && _transferHandOnSecondGrab)
@@ -184,7 +184,7 @@ namespace Oculus.Interaction
             WhenGrabbableUpdated(new GrabbableArgs(id, GrabbableEvent.Update));
         }
 
-        public void RemoveGrabPoint(int id, Pose pose)
+        public virtual void RemoveGrabPoint(int id, Pose pose)
         {
             int index = _grabPointIds.IndexOf(id);
             if (index == -1)
