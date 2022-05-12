@@ -5,6 +5,12 @@ namespace ISVR {
 
     public class Player : MonoBehaviour {
 
+        [SerializeField] private Transform head;
+        [SerializeField] private BugMarker leftBugMarker;
+        [SerializeField] private BugMarker rightBugMarker;
+
+        public Transform Head => head;
+
         private GrabbableExtended _grabbableLeft;
         private GrabbableExtended _grabbableRight;
 
@@ -12,11 +18,25 @@ namespace ISVR {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch)) {
                 if (_grabbableRight) {
                     _grabbableRight.Activate();
+                } else if (rightBugMarker.IsActive) {
+                    rightBugMarker.Use();
                 }
             }
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch)) {
                 if (_grabbableLeft) {
                     _grabbableLeft.Activate();
+                } else if (leftBugMarker.IsActive) {
+                    leftBugMarker.Use();
+                }
+            }
+            if (OVRInput.GetDown(OVRInput.Button.One)) {
+                if (_grabbableRight == null && rightBugMarker) {
+                    rightBugMarker.Toggle();
+                }
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Three)) {
+                if (_grabbableLeft == null && leftBugMarker) {
+                    leftBugMarker.Toggle();
                 }
             }
         }
@@ -27,11 +47,13 @@ namespace ISVR {
                     if (_grabbableRight) return;
                     _grabbableRight = grabbable;
                     _grabbableRight.Grab();
+                    rightBugMarker.Deactivate();
                     break;
                 case OVRInput.Controller.LTouch:
                     if (_grabbableLeft) return;
                     _grabbableLeft = grabbable;
                     _grabbableLeft.Grab();
+                    leftBugMarker.Deactivate();
                     break;
             }
         }

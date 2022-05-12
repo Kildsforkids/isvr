@@ -9,9 +9,14 @@ namespace ISVR {
 
         public static GameSetup Instance { get; private set; }
 
+        [SerializeField] private Player player;
         [SerializeField] private int targetFrameRate;
         [SerializeField] private TextMeshProUGUI fpsText;
         [SerializeField] private List<Electrical> bugs;
+        [SerializeField] private List<BugMark> bugMarks;
+
+        public Player Player => player;
+        public int BugMarkersCount => bugMarks.Count;
 
         private void Awake() {
             Instance = this;
@@ -24,6 +29,14 @@ namespace ISVR {
 
         public void AddBug(Electrical electrical) {
             bugs.Add(electrical);
+        }
+
+        public void AddBugMark(BugMark bugMark) {
+            bugMarks.Add(bugMark);
+        }
+
+        public void RemoveBugMark(int index) {
+            bugMarks.RemoveAt(index);
         }
 
         private IEnumerator FPSUpdateCoroutine() {
