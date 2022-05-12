@@ -11,8 +11,9 @@ namespace ISVR {
 
         protected override void InteractableSelected(GrabInteractable interactable) {
             base.InteractableSelected(interactable);
-            var grabbableExtended = interactable.Grabbable as GrabbableExtended;
-            player.AddGrabbable(grabbableExtended, controller);
+            if (interactable.TryGetComponent(out GrabbableExtended grabbableExtended)) {
+                player.AddGrabbable(grabbableExtended, controller);
+            }
         }
 
         protected override void InteractableUnselected(GrabInteractable interactable) {

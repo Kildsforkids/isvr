@@ -34,7 +34,7 @@ namespace ISVR {
 
         public void TurnOff() {
             StopRaycaster();
-            UpdateDebugText(defaultDebugText);
+            bar.SetValue(0f);
             indicator?.Deactivate();
             _isActive = false;
         }
@@ -68,7 +68,7 @@ namespace ISVR {
             int electricalCount = 0;
             float maxValue = 0;
             foreach (var hit in hits) {
-                if (hit.transform.TryGetComponent<Electrical>(out Electrical electrical)) {
+                if (hit.transform.TryGetComponent(out Electrical electrical)) {
                     average += electrical.Value;
                     maxValue = electrical.Value > maxValue ? electrical.Value : maxValue;
                     Debug.Log(hit.distance);
@@ -80,7 +80,6 @@ namespace ISVR {
             }
             average = Mathf.Clamp01(average + Random.Range(errorRate.x, errorRate.y));
             bar.SetValue(average);
-            // UpdateDebugText(average.ToString("F1"));
         }
     }
 }

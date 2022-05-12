@@ -26,10 +26,12 @@ namespace ISVR {
                 case OVRInput.Controller.RTouch:
                     if (_grabbableRight) return;
                     _grabbableRight = grabbable;
+                    _grabbableRight.Grab();
                     break;
                 case OVRInput.Controller.LTouch:
                     if (_grabbableLeft) return;
                     _grabbableLeft = grabbable;
+                    _grabbableLeft.Grab();
                     break;
             }
         }
@@ -38,10 +40,12 @@ namespace ISVR {
             switch (controllerType) {
                 case OVRInput.Controller.RTouch:
                     if (_grabbableRight == null) return;
+                    _grabbableRight.Release();
                     _grabbableRight = null;
                     break;
                 case OVRInput.Controller.LTouch:
                     if (_grabbableLeft == null) return;
+                    _grabbableLeft.Release();
                     _grabbableLeft = null;
                     break;
             }

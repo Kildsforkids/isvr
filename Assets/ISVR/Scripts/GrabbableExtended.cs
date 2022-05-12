@@ -1,5 +1,4 @@
 using Oculus.Interaction;
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace ISVR.Core {
@@ -10,13 +9,11 @@ namespace ISVR.Core {
         public UnityEvent OnRelease;
         public UnityEvent OnActivate;
 
-        public override void AddGrabPoint(int id, Pose pose) {
-            base.AddGrabPoint(id, pose);
+        public void Grab() {
             OnGrab?.Invoke();
         }
 
-        public override void RemoveGrabPoint(int id, Pose pose) {
-            base.RemoveGrabPoint(id, pose);
+        public void Release() {
             OnRelease?.Invoke();
         }
 
