@@ -10,6 +10,7 @@ namespace ISVR {
         [SerializeField] private Indicator indicator;
         [SerializeField] private Bar bar;
         [SerializeField] private Vector2 errorRate;
+        [SerializeField] private AudioSource audioSource;
 
         public bool IsActive => _isActive;
 
@@ -47,6 +48,24 @@ namespace ISVR {
             }
         }
 
+        public void TurnSoundOn() {
+            if (audioSource.enabled) return;
+            audioSource.enabled = true;
+        }
+
+        public void TurnSoundOff() {
+            if (!audioSource.enabled) return;
+            audioSource.enabled = false;
+        }
+
+        public void ToggleSound() {
+            if (audioSource.enabled) {
+                TurnSoundOff();
+            } else {
+                TurnSoundOn();
+            }
+        }
+
         private void StartRaycaster() {
             _raycaster.CastRayInfinite();
         }
@@ -78,6 +97,11 @@ namespace ISVR {
                 average /= electricalCount / maxValue;
             }
             average = Mathf.Clamp01(average + Random.Range(errorRate.x, errorRate.y));
+            if (average > 0.8f) {
+                audioSource.Play();
+            } else {
+                audioSource.Pause();
+            }
             bar.SetValue(average);
         }
     }

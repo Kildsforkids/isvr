@@ -13,6 +13,7 @@ namespace ISVR {
         private int selectedOptionIndex;
 
         private void Start() {
+            selectedOptionIndex = options.Count - 1;
             SelectOption(selectedOptionIndex);
         }
 
