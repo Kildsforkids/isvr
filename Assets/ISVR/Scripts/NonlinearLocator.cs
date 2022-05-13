@@ -71,7 +71,6 @@ namespace ISVR {
                 if (hit.transform.TryGetComponent(out Electrical electrical)) {
                     average += electrical.Value;
                     maxValue = electrical.Value > maxValue ? electrical.Value : maxValue;
-                    Debug.Log(hit.distance);
                     electricalCount++;
                 }
             }

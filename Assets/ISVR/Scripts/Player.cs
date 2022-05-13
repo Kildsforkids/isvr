@@ -8,6 +8,7 @@ namespace ISVR {
         [SerializeField] private Transform head;
         [SerializeField] private BugMarker leftBugMarker;
         [SerializeField] private BugMarker rightBugMarker;
+        [SerializeField] private HandMenu handMenu;
 
         public Transform Head => head;
 
@@ -23,7 +24,9 @@ namespace ISVR {
                 }
             }
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch)) {
-                if (_grabbableLeft) {
+                if (handMenu.IsActive) {
+                    handMenu.ActivateSelectedOption();
+                } else if (_grabbableLeft) {
                     _grabbableLeft.Activate();
                 } else if (leftBugMarker.IsActive) {
                     leftBugMarker.Use();
@@ -35,8 +38,24 @@ namespace ISVR {
                 }
             }
             if (OVRInput.GetDown(OVRInput.Button.Three)) {
-                if (_grabbableLeft == null && leftBugMarker) {
-                    leftBugMarker.Toggle();
+                if (handMenu.IsActive) {
+                    handMenu.SelectPreviousOption();
+                } else {
+                    if (_grabbableLeft == null && leftBugMarker) {
+                        leftBugMarker.Toggle();
+                    }
+                }
+                
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Four)) {
+                if (handMenu.IsActive) {
+                    handMenu.SelectNextOption();
+                }
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Start)) {
+                handMenu.Toggle();
+                if (leftBugMarker.IsActive) {
+                    leftBugMarker.Deactivate();
                 }
             }
         }

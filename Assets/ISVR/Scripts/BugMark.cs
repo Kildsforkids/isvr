@@ -7,6 +7,7 @@ namespace ISVR {
         [SerializeField] private int index;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Color highlightColor;
+        [SerializeField] private Color bugColor;
 
         public int Index {
             get {
@@ -22,8 +23,10 @@ namespace ISVR {
 
         private void Start() {
             _defaultColor = meshRenderer.material.color;
-            Index = GameSetup.Instance.BugMarkersCount;
-            GameSetup.Instance.AddBugMark(this);
+            Index = GameSetup.Instance.TryAddBugMark(this);
+            if (Index < 0) {
+                Destroy(gameObject);
+            }
         }
 
         public void Remove() {
@@ -42,6 +45,10 @@ namespace ISVR {
             if (!IsSelected) return;
             IsSelected = false;
             ReturnDefaultColor();
+        }
+
+        public void HighlightAsBug() {
+            meshRenderer.material.color = bugColor;
         }
 
         private void Highlight() {

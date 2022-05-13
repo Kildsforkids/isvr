@@ -79,8 +79,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf75acaaf27c2044bea4807b93ca205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   meshRenderer: {fileID: 3141470355835002590}
-  highlightColor: {r: 0, g: 0.033422947, b: 1, a: 1}
+  highlightColor: {r: 0.9353049, g: 1, b: 0, a: 1}
 --- !u!54 &43867618998429532
 Rigidbody:
   m_ObjectHideFlags: 0

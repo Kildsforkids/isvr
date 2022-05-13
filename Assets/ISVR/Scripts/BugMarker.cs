@@ -9,6 +9,7 @@ namespace ISVR {
         [SerializeField] private GameObject bugMark;
         [SerializeField] private float distance;
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private LineRenderer lineRenderer;
 
         public bool IsActive { get; private set; }
 
@@ -25,8 +26,15 @@ namespace ISVR {
                 distance,
                 layerMask
             )) {
-                if (_hit.transform.TryGetComponent(out _currentMark)) {
+                if (!lineRenderer.enabled) {
+                    lineRenderer.enabled = true;
+                }
+                lineRenderer.SetPosition(0, origin.position);
+                lineRenderer.SetPosition(1, _hit.point);
+                if (_hit.transform.TryGetComponent(out BugMark currentMark)) {
+                    _currentMark = currentMark;
                     _currentMark.Select();
+                    ghostBugMark.Hide();
                     _markerState = MarkerState.Remove;
                 } else {
                     ClearCurrentMark();
@@ -37,16 +45,20 @@ namespace ISVR {
             } else {
                 ClearCurrentMark();
                 ghostBugMark.Hide();
+                lineRenderer.enabled = false;
             }
         }
 
         public void Activate() {
             IsActive = true;
+            lineRenderer.enabled = true;
         }
 
         public void Deactivate() {
             IsActive = false;
             ghostBugMark.Hide();
+            lineRenderer.enabled = false;
+            ClearCurrentMark();
         }
 
         public void Toggle() {
@@ -70,6 +82,7 @@ namespace ISVR {
 
         private void SetBugMark() {
             if (_hit.transform == null) return;
+            if (GameSetup.Instance.GetFreeBugMarkSlotIndex() < 0) return;
             Instantiate(bugMark, _hit.point, Quaternion.identity)
                 .transform.SetParent(_hit.transform, true);
         }
