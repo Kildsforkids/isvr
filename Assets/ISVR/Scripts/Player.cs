@@ -14,38 +14,48 @@ namespace ISVR {
 
         private GrabbableExtended _grabbableLeft;
         private GrabbableExtended _grabbableRight;
+        private bool _isLevelEnded;
 
         private void Update() {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch)) {
-                if (_grabbableRight) {
-                    _grabbableRight.Activate();
-                } else if (rightBugMarker.IsActive) {
-                    rightBugMarker.Use();
+            if (!_isLevelEnded) {
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch)) {
+                    if (_grabbableRight) {
+                        _grabbableRight.Activate();
+                    } else if (rightBugMarker.IsActive) {
+                        rightBugMarker.Use();
+                    }
+                }
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch)) {
+                    if (!handMenu.IsActive) {
+                        if (_grabbableLeft) {
+                            _grabbableLeft.Activate();
+                        } else if (leftBugMarker.IsActive) {
+                            leftBugMarker.Use();
+                        }
+                    }
+                }
+                if (OVRInput.GetDown(OVRInput.Button.One)) {
+                    if (_grabbableRight == null && rightBugMarker) {
+                        rightBugMarker.Toggle();
+                    }
+                }
+                if (OVRInput.GetDown(OVRInput.Button.Three)) {
+                    if (!handMenu.IsActive) {
+                        if (_grabbableLeft == null && leftBugMarker) {
+                            leftBugMarker.Toggle();
+                        }
+                    }
                 }
             }
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch)) {
                 if (handMenu.IsActive) {
                     handMenu.ActivateSelectedOption();
-                } else if (_grabbableLeft) {
-                    _grabbableLeft.Activate();
-                } else if (leftBugMarker.IsActive) {
-                    leftBugMarker.Use();
-                }
-            }
-            if (OVRInput.GetDown(OVRInput.Button.One)) {
-                if (_grabbableRight == null && rightBugMarker) {
-                    rightBugMarker.Toggle();
                 }
             }
             if (OVRInput.GetDown(OVRInput.Button.Three)) {
                 if (handMenu.IsActive) {
                     handMenu.SelectPreviousOption();
-                } else {
-                    if (_grabbableLeft == null && leftBugMarker) {
-                        leftBugMarker.Toggle();
-                    }
                 }
-                
             }
             if (OVRInput.GetDown(OVRInput.Button.Four)) {
                 if (handMenu.IsActive) {
@@ -90,6 +100,10 @@ namespace ISVR {
                     _grabbableLeft = null;
                     break;
             }
+        }
+
+        public void EndLevel() {
+            _isLevelEnded = true;
         }
     }
 }

@@ -13,15 +13,21 @@ namespace ISVR {
         [SerializeField] private Player player;
         [SerializeField] private int targetFrameRate;
         [SerializeField] private TextMeshProUGUI fpsText;
+        [SerializeField] private TextMeshProUGUI resultText;
         [SerializeField] private int bugMarksMaxCount;
+        [SerializeField] private float bugMarkMaxSearchDistance;
         [SerializeField] private List<Bug> bugs;
         [SerializeField] private BugMark[] bugMarks;
 
         public Player Player => player;
         public int BugMarkersCount => bugMarks.Length;
 
+        private List<BugMark> correctBugMarks;
+        private bool _isLevelEnded;
+
         private void Awake() {
             bugMarks = new BugMark[bugMarksMaxCount];
+            correctBugMarks = new List<BugMark>();
             Instance = this;
             Application.targetFrameRate = targetFrameRate;
         }
@@ -59,27 +65,51 @@ namespace ISVR {
             return -1;
         }
 
-        public BugMark GetNearestBugMark(Vector3 position) {
+        public void EndLevel() {
+            if (_isLevelEnded) return;
+            float result = CalculatePredictResult();
+            resultText.text = $"{(result * 100f):0.##}%";
+            Player.EndLevel();
+            _isLevelEnded = true;
+        }
+
+        public void RestartScene() {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        private float CalculatePredictResult() {
+            int bugMarksCount = 0;
+            for (int i = 0; i < bugMarksMaxCount; i++) {
+                if (bugMarks[i] != null) {
+                    bugMarksCount++;
+                }
+            }
+            foreach (var bug in bugs) {
+                var bugMark = GetNearestBugMark(bug.transform.position, bugMarkMaxSearchDistance);
+                if (bugMark != null) {
+                    correctBugMarks.Add(bugMark);
+                }
+            }
+            foreach (var bugMark in correctBugMarks) {
+                bugMark.HighlightAsBug();
+            }
+            float result = (float)correctBugMarks.Count / bugMarksCount;
+            return result;
+        }
+
+        private BugMark GetNearestBugMark(Vector3 position, float maxDistance) {
             BugMark nearestBugMark = null;
             float minDistance = Mathf.Infinity;
             for (int i = 0; i < bugMarks.Length; i++) {
                 if (bugMarks[i] != null) {
                     var distance = (bugMarks[i].transform.position - position).sqrMagnitude;
-                    if (distance < minDistance) {
+                    if (distance < maxDistance && distance < minDistance) {
                         minDistance = distance;
                         nearestBugMark = bugMarks[i];
                     }
                 }
             }
             return nearestBugMark;
-        }
-
-        public void EndLevel() {
-            Debug.Log("You just ended level! Congrats!");
-        }
-
-        public void RestartScene() {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
 
         private IEnumerator FPSUpdateCoroutine() {
