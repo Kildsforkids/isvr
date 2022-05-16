@@ -195,8 +195,10 @@ namespace Oculus.Interaction
         {
             if (_grabbingRigidbody != null)
             {
-                _grabbingRigidbody.gameObject.SetActive(false);
-                _grabbingRigidbody.isKinematic = true;
+                Destroy(_grabbingRigidbody.gameObject);
+                _cachedGrabbingRigidbodies.Clear();
+                // _grabbingRigidbody.gameObject.SetActive(false);
+                // _grabbingRigidbody.isKinematic = true;
                 _grabbingRigidbody = null;
             }
         }

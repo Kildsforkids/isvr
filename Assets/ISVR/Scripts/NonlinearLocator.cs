@@ -38,6 +38,7 @@ namespace ISVR {
             bar.SetValue(0f);
             indicator?.Deactivate();
             _isActive = false;
+            audioSource.Pause();
         }
 
         public void Toggle() {

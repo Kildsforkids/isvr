@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Oculus.Interaction.Input;
 
 namespace ISVR {
 
@@ -69,12 +70,13 @@ namespace ISVR {
             if (_isLevelEnded) return;
             float result = CalculatePredictResult();
             resultText.text = $"{(result * 100f):0.##}%";
+            resultText.enabled = true;
             Player.EndLevel();
             _isLevelEnded = true;
         }
 
         public void RestartScene() {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private float CalculatePredictResult() {
@@ -84,17 +86,21 @@ namespace ISVR {
                     bugMarksCount++;
                 }
             }
-            foreach (var bug in bugs) {
-                var bugMark = GetNearestBugMark(bug.transform.position, bugMarkMaxSearchDistance);
-                if (bugMark != null) {
-                    correctBugMarks.Add(bugMark);
+            if (bugMarksCount > 0) {
+                foreach (var bug in bugs) {
+                    var bugMark = GetNearestBugMark(bug.transform.position, bugMarkMaxSearchDistance);
+                    if (bugMark != null) {
+                        correctBugMarks.Add(bugMark);
+                    }
                 }
+                foreach (var bugMark in correctBugMarks) {
+                    bugMark.HighlightAsBug();
+                }
+                float result = (float)correctBugMarks.Count / bugMarksCount;
+                return result;
+            } else {
+                return 0;
             }
-            foreach (var bugMark in correctBugMarks) {
-                bugMark.HighlightAsBug();
-            }
-            float result = (float)correctBugMarks.Count / bugMarksCount;
-            return result;
         }
 
         private BugMark GetNearestBugMark(Vector3 position, float maxDistance) {

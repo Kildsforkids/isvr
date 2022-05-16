@@ -34,12 +34,12 @@ namespace ISVR {
                         }
                     }
                 }
-                if (OVRInput.GetDown(OVRInput.Button.One)) {
+                if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch)) {
                     if (_grabbableRight == null && rightBugMarker) {
                         rightBugMarker.Toggle();
                     }
                 }
-                if (OVRInput.GetDown(OVRInput.Button.Three)) {
+                if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch)) {
                     if (!handMenu.IsActive) {
                         if (_grabbableLeft == null && leftBugMarker) {
                             leftBugMarker.Toggle();
@@ -52,17 +52,17 @@ namespace ISVR {
                     handMenu.ActivateSelectedOption();
                 }
             }
-            if (OVRInput.GetDown(OVRInput.Button.Three)) {
+            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch)) {
                 if (handMenu.IsActive) {
                     handMenu.SelectPreviousOption();
                 }
             }
-            if (OVRInput.GetDown(OVRInput.Button.Four)) {
+            if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch)) {
                 if (handMenu.IsActive) {
                     handMenu.SelectNextOption();
                 }
             }
-            if (OVRInput.GetDown(OVRInput.Button.Start)) {
+            if (OVRInput.GetDown(OVRInput.Button.Start, OVRInput.Controller.LTouch)) {
                 handMenu.Toggle();
                 if (leftBugMarker.IsActive) {
                     leftBugMarker.Deactivate();
