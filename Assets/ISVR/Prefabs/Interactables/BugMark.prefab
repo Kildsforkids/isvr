@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3270689962518783419}
   - component: {fileID: 5859322652993407016}
-  - component: {fileID: 2295706337787732349}
   - component: {fileID: 1587219963224766917}
   - component: {fileID: 43867618998429532}
+  - component: {fileID: -7507844196194456539}
+  - component: {fileID: -7165568535036921315}
   m_Layer: 0
   m_Name: BugMark
   m_TagString: Untagged
@@ -49,24 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isLocal: 0
---- !u!114 &2295706337787732349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228352950955461481}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77771271c84820e47a3f17be5272e492, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  meshRenderer: {fileID: 3141470355835002590}
-  minDistance: 0
-  maxDistance: 1
-  minAlpha: 0.5
-  maxAlpha: 1
 --- !u!114 &1587219963224766917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +66,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 3141470355835002590}
   highlightColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0.39215687}
   bugColor: {r: 0, g: 1, b: 0.40255213, a: 1}
+  sticker: {fileID: -7165568535036921315}
 --- !u!54 &43867618998429532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,6 +83,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!138 &-7507844196194456539
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228352950955461481}
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &-7165568535036921315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228352950955461481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5517973f30f315841a6cc2f183615c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRigidbody: {fileID: 0}
 --- !u!1 &7500303125105967362
 GameObject:
   m_ObjectHideFlags: 0

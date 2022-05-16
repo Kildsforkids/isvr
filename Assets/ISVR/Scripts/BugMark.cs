@@ -8,6 +8,7 @@ namespace ISVR {
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Color highlightColor;
         [SerializeField] private Color bugColor;
+        [SerializeField] private Sticker sticker;
 
         public int Index {
             get {
@@ -49,6 +50,20 @@ namespace ISVR {
 
         public void HighlightAsBug() {
             meshRenderer.material.color = bugColor;
+        }
+
+        public void SetParentOrJoint(Transform parent) {
+            if (sticker) {
+                var stickPoint = new GameObject("StickerSlot").transform;
+                stickPoint.position = transform.position;
+                stickPoint.SetParent(parent, true);
+                var targetRigidbody = stickPoint.gameObject.AddComponent<Rigidbody>();
+                targetRigidbody.useGravity = false;
+                targetRigidbody.isKinematic = true;
+                sticker.SetTarget(targetRigidbody);
+            } else {
+                transform.SetParent(parent, true);
+            }
         }
 
         private void Highlight() {

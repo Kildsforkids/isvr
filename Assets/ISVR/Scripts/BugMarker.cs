@@ -6,7 +6,7 @@ namespace ISVR {
 
         [SerializeField] private Transform origin;
         [SerializeField] private GhostMark ghostBugMark;
-        [SerializeField] private GameObject bugMark;
+        [SerializeField] private Transform bugMark;
         [SerializeField] private float distance;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private LineRenderer lineRenderer;
@@ -83,8 +83,8 @@ namespace ISVR {
         private void SetBugMark() {
             if (_hit.transform == null) return;
             if (GameSetup.Instance.GetFreeBugMarkSlotIndex() < 0) return;
-            Instantiate(bugMark, _hit.point, Quaternion.identity)
-                .transform.SetParent(_hit.transform, true);
+            var bugMarkTransform = Instantiate(bugMark, _hit.point, Quaternion.identity);
+            bugMarkTransform.GetComponent<BugMark>().SetParentOrJoint(_hit.transform);
         }
 
         private void RemoveBugMark() {
