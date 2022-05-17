@@ -86,6 +86,18 @@ namespace ISVR {
                     bugMarksCount++;
                 }
             }
+            // foreach (var bug in bugs) {
+            //     var outline = bug.gameObject.AddComponent<Outline>();
+            //     outline.OutlineColor = Color.yellow;
+            //     outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+            // }
+            foreach (var bug in bugs) {
+                bug.gameObject.layer = 7;
+                var meshRenderer = bug.GetComponent<MeshRenderer>();
+                if (!meshRenderer.enabled) {
+                    meshRenderer.enabled = true;
+                }
+            }
             if (bugMarksCount > 0) {
                 foreach (var bug in bugs) {
                     var bugMark = GetNearestBugMark(bug.transform.position, bugMarkMaxSearchDistance);
@@ -96,7 +108,13 @@ namespace ISVR {
                 foreach (var bugMark in correctBugMarks) {
                     bugMark.HighlightAsBug();
                 }
-                float result = (float)correctBugMarks.Count / bugMarksCount;
+                float bugsCount = bugs.Count;
+                float correctBugMarksCount = correctBugMarks.Count;
+                float result = (float)correctBugMarksCount / bugMarksCount -
+                    (float)(bugsCount - correctBugMarksCount) / bugsCount;
+                if (result < 0f) {
+                    result = 0f;
+                }
                 return result;
             } else {
                 return 0;
