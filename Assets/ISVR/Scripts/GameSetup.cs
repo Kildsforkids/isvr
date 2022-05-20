@@ -19,6 +19,7 @@ namespace ISVR {
         [SerializeField] private float bugMarkMaxSearchDistance;
         [SerializeField] private List<Bug> bugs;
         [SerializeField] private BugMark[] bugMarks;
+        [SerializeField] private List<Transform> bugMarksStopList;
 
         public Player Player => player;
         public int BugMarkersCount => bugMarks.Length;
@@ -69,14 +70,18 @@ namespace ISVR {
         public void EndLevel() {
             if (_isLevelEnded) return;
             float result = CalculatePredictResult();
-            resultText.text = $"{(result * 100f):0.##}%";
-            resultText.enabled = true;
+            // resultText.text = $"{(result * 100f):0.##}%";
+            // resultText.enabled = true;
             Player.EndLevel();
             _isLevelEnded = true;
         }
 
         public void RestartScene() {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public bool FindInStopList(Transform transform) {
+            return bugMarksStopList.Contains(transform);
         }
 
         private float CalculatePredictResult() {

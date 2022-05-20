@@ -26,6 +26,7 @@ namespace ISVR {
                 distance,
                 layerMask
             )) {
+                if (GameSetup.Instance.FindInStopList(_hit.transform)) return;
                 if (!lineRenderer.enabled) {
                     lineRenderer.enabled = true;
                 }

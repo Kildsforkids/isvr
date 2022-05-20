@@ -12,6 +12,7 @@ permissions and limitations under the License.
 
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Controls the player's movement in virtual reality.
@@ -158,6 +159,17 @@ public class OVRPlayerController : MonoBehaviour
 	private float buttonRotation = 0f;
 	private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
 	private bool playerControllerEnabled = false;
+
+	// Custom fields for ISVR
+	[SerializeField] private bool useFadeOnRotation;
+
+	public UnityEvent OnSnapRotationBegin;
+	public UnityEvent OnSnapRotationEnd;
+
+	public bool IsFading { get; set; }
+	public bool CanTurn { get; set; }
+
+	private bool _isRightRotation;
 
 	void Start()
 	{
@@ -341,14 +353,14 @@ public class OVRPlayerController : MonoBehaviour
 
 			bool dpad_move = false;
 
-			if (OVRInput.Get(OVRInput.Button.DpadUp))
+			if (OVRInput.Get(OVRInput.Button.DpadUp, OVRInput.Controller.LTouch))
 			{
 				moveForward = true;
 				dpad_move = true;
 
 			}
 
-			if (OVRInput.Get(OVRInput.Button.DpadDown))
+			if (OVRInput.Get(OVRInput.Button.DpadDown, OVRInput.Controller.LTouch))
 			{
 				moveBack = true;
 				dpad_move = true;
@@ -395,7 +407,7 @@ public class OVRPlayerController : MonoBehaviour
 			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 #endif
 
-			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch);
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
 			if (FixedSpeedSteps > 0)
@@ -447,53 +459,84 @@ public class OVRPlayerController : MonoBehaviour
 			if (!SkipMouseRotation)
 				euler.y += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
 #endif
-
-			if (SnapRotation)
-			{
-				if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
-					(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
-				{
-					if (ReadyToSnapTurn)
-					{
+			if (useFadeOnRotation) {
+				if (CanTurn) {
+					CanTurn = false;
+					if (_isRightRotation) {
+						euler.y += RotationRatchet;
+					} else {
 						euler.y -= RotationRatchet;
-						ReadyToSnapTurn = false;
+					}
+
+					if (RotateAroundGuardianCenter)
+					{
+						transform.rotation = Quaternion.Euler(euler);
+					}
+					else
+					{
+						transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, euler.y);
+					}
+				} else {
+					if (!IsFading) {
+						if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft)) {
+							IsFading = true;
+							_isRightRotation = false;
+							OnSnapRotationBegin?.Invoke();
+						} else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight)) {
+							IsFading = true;
+							_isRightRotation = true;
+							OnSnapRotationBegin?.Invoke();
+						}
 					}
 				}
-				else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
-					(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
+			} else {
+				if (SnapRotation)
 				{
-					if (ReadyToSnapTurn)
+					if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
+						(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
 					{
-						euler.y += RotationRatchet;
-						ReadyToSnapTurn = false;
+						if (ReadyToSnapTurn)
+						{
+							euler.y -= RotationRatchet;
+							ReadyToSnapTurn = false;
+						}
+					}
+					else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
+						(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
+					{
+						if (ReadyToSnapTurn)
+						{
+							euler.y += RotationRatchet;
+							ReadyToSnapTurn = false;
+						}
+					}
+					else
+					{
+						ReadyToSnapTurn = true;
 					}
 				}
 				else
 				{
-					ReadyToSnapTurn = true;
-				}
-			}
-			else
-			{
-				Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-				if (RotationEitherThumbstick)
-				{
-					Vector2 altSecondaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-					if (secondaryAxis.sqrMagnitude < altSecondaryAxis.sqrMagnitude)
+					Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+					if (RotationEitherThumbstick)
 					{
-						secondaryAxis = altSecondaryAxis;
+						Vector2 altSecondaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+						if (secondaryAxis.sqrMagnitude < altSecondaryAxis.sqrMagnitude)
+						{
+							secondaryAxis = altSecondaryAxis;
+						}
 					}
+					euler.y += secondaryAxis.x * rotateInfluence;
 				}
-				euler.y += secondaryAxis.x * rotateInfluence;
-			}
 
-			if (RotateAroundGuardianCenter)
-			{
-				transform.rotation = Quaternion.Euler(euler);
-			}
-			else
-			{
-				transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, euler.y);
+				if (RotateAroundGuardianCenter)
+				{
+					transform.rotation = Quaternion.Euler(euler);
+				}
+				else
+				{
+					transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, euler.y);
+				}
 			}
 		}
 #endif
