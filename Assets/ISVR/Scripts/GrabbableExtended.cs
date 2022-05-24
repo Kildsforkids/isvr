@@ -1,6 +1,5 @@
 using Oculus.Interaction;
 using UnityEngine.Events;
-using UnityEngine;
 
 namespace ISVR.Core {
 

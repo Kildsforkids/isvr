@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ISVR {
+namespace ISVR.UI {
     [RequireComponent(typeof(Slider))]
     public class Bar : MonoBehaviour {
 

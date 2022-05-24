@@ -1,5 +1,6 @@
 using UnityEngine;
 using ISVR.Core;
+using ISVR.Core.Bugs;
 
 namespace ISVR {
 

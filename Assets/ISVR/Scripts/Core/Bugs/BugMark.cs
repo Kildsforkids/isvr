@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ISVR {
+namespace ISVR.Core.Bugs {
 
     public class BugMark : MonoBehaviour {
 

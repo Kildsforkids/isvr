@@ -1,5 +1,6 @@
 using UnityEngine;
 using ISVR.Core;
+using ISVR.UI;
 
 namespace ISVR {
 
@@ -75,13 +76,13 @@ namespace ISVR {
             _raycaster.StopCastRay();
         }
 
-        private void UpdateDebugText(string text) {
-            if (text == null) {
-                _commandPanel.UpdateDebugText(defaultDebugText);
-            } else {
-                _commandPanel.UpdateDebugText(text);
-            }
-        }
+        // private void UpdateDebugText(string text) {
+        //     if (text == null) {
+        //         _commandPanel.UpdateDebugText(defaultDebugText);
+        //     } else {
+        //         _commandPanel.UpdateDebugText(text);
+        //     }
+        // }
 
         private void CalculateImpact(RaycastHit[] hits) {
             float average = 0f;

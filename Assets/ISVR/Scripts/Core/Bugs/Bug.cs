@@ -1,4 +1,4 @@
-namespace ISVR {
+namespace ISVR.Core.Bugs {
 
     public class Bug : Electrical {
 

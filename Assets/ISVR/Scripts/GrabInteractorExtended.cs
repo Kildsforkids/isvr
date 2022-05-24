@@ -9,16 +9,25 @@ namespace ISVR {
         [SerializeField] private Player player;
         [SerializeField] private OVRInput.Controller controller;
 
+        private bool isGrabbed;
+
         protected override void InteractableSelected(GrabInteractable interactable) {
-            base.InteractableSelected(interactable);
-            if (interactable.TryGetComponent(out GrabbableExtended grabbableExtended)) {
-                player.AddGrabbable(grabbableExtended, controller);
+            if (isGrabbed) {
+                base.InteractableUnselected(interactable);
+                player.RemoveGrabbable(controller);
+                isGrabbed = false;
+            } else {
+                base.InteractableSelected(interactable);
+                if (interactable.TryGetComponent(out GrabbableExtended grabbableExtended)) {
+                    player.AddGrabbable(grabbableExtended, controller);
+                }
+                isGrabbed = true;
             }
         }
 
         protected override void InteractableUnselected(GrabInteractable interactable) {
-            base.InteractableUnselected(interactable);
-            player.RemoveGrabbable(controller);
+            // base.InteractableUnselected(interactable);
+            // player.RemoveGrabbable(controller);
         }
     }
 }

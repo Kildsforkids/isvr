@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ISVR {
+namespace ISVR.Utils {
 
     public class TransparentDistance : MonoBehaviour {
 
