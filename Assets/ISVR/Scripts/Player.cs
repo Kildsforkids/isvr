@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using ISVR.Core;
 using ISVR.Core.Bugs;
@@ -10,6 +11,7 @@ namespace ISVR {
         [SerializeField] private BugMarker leftBugMarker;
         [SerializeField] private BugMarker rightBugMarker;
         [SerializeField] private HandMenu handMenu;
+        [SerializeField] private List<ControllerAction> controllerActions;
 
         public Transform Head => head;
 
@@ -19,6 +21,9 @@ namespace ISVR {
 
         private void Update() {
             if (!_isLevelEnded) {
+
+                // CheckControllerActions();
+
                 if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch)) {
                     if (_grabbableRight) {
                         _grabbableRight.Activate();
@@ -105,6 +110,14 @@ namespace ISVR {
 
         public void EndLevel() {
             _isLevelEnded = true;
+        }
+
+        private void CheckControllerActions() {
+            foreach (var action in controllerActions) {
+                if (OVRInput.GetDown(action.Button, action.Controller)) {
+                    action.OnActivate?.Invoke();
+                }
+            }
         }
     }
 }

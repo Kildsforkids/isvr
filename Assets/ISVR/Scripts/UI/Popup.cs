@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ISVR.UI {
 
@@ -7,6 +8,8 @@ namespace ISVR.UI {
 
         [SerializeField] private bool hideByTime;
         [SerializeField] private float lifeTime;
+
+        public UnityEvent OnClose;
 
         private Coroutine _hideByTimeCoroutine;
         private float _time;
@@ -37,6 +40,7 @@ namespace ISVR.UI {
 
         private void Hide() {
             _hideByTimeCoroutine = null;
+            OnClose?.Invoke();
             gameObject.SetActive(false);
         }
     }

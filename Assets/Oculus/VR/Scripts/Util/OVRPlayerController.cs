@@ -479,13 +479,21 @@ public class OVRPlayerController : MonoBehaviour
 				} else {
 					if (!IsFading) {
 						if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft)) {
-							IsFading = true;
-							_isRightRotation = false;
-							OnSnapRotationBegin?.Invoke();
+							if (ReadyToSnapTurn) {
+								ReadyToSnapTurn = false;
+								IsFading = true;
+								_isRightRotation = false;
+								OnSnapRotationBegin?.Invoke();
+							}
 						} else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight)) {
-							IsFading = true;
-							_isRightRotation = true;
-							OnSnapRotationBegin?.Invoke();
+							if (ReadyToSnapTurn) {
+								ReadyToSnapTurn = false;
+								IsFading = true;
+								_isRightRotation = true;
+								OnSnapRotationBegin?.Invoke();
+							}
+						} else {
+							ReadyToSnapTurn = true;
 						}
 					}
 				}
