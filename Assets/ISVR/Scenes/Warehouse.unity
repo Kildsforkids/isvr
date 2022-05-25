@@ -699,6 +699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d045db73444ab014b804d5118efb0aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projection: {fileID: 0}
+  fingertip: {fileID: 0}
   powerButton: {fileID: 0}
   otherButtons: []
   debugText: {fileID: 1964991064}
@@ -20606,6 +20608,7 @@ MonoBehaviour:
   leftBugMarker: {fileID: 204613903}
   rightBugMarker: {fileID: 107571457}
   handMenu: {fileID: 972375437}
+  controllerActions: []
 --- !u!1 &4511096474090282396
 GameObject:
   m_ObjectHideFlags: 0
