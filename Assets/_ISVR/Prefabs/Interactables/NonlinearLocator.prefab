@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 8
   OnTouch:
     m_PersistentCalls:
       m_Calls: []
@@ -597,7 +597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4650482cbe5644c85cb7990f5aec8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDebugText: Nothing
   indicator: {fileID: 7494168682841771084}
   bar: {fileID: 7494168682990199261}
   errorRate: {x: 0, y: 0.2}
@@ -811,13 +810,13 @@ MonoBehaviour:
   projection: {fileID: 7494168684268066675}
   fingertip: {fileID: 0}
   powerButton: {fileID: 5682078518726409428}
+  powerBoostButton: {fileID: 2895722013767023278}
+  harmonicSoundButton: {fileID: 2547115716392860286}
+  volumePositiveButton: {fileID: 4315043876166328686}
+  volumeNegativeButton: {fileID: 9172863936616919163}
   otherButtons:
   - {fileID: 4376660396376216590}
   - {fileID: 4370273315396987184}
-  - {fileID: 2547115716392860286}
-  - {fileID: 4315043876166328686}
-  - {fileID: 9172863936616919163}
-  - {fileID: 2895722013767023278}
   - {fileID: 6193076125538685441}
   - {fileID: 6056207816420045070}
   debugText: {fileID: 7494168683467762049}
@@ -1149,19 +1148,7 @@ MonoBehaviour:
   name: "\u0412\u043A\u043B / \u0432\u044B\u043A\u043B"
   OnTouch:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7494168683213444743}
-        m_TargetAssemblyTypeName: ISVR.NonlinearLocator, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnStay:
     m_PersistentCalls:
       m_Calls: []
@@ -1461,7 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 3
   OnTouch:
     m_PersistentCalls:
       m_Calls: []
@@ -1827,7 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 2
   OnTouch:
     m_PersistentCalls:
       m_Calls: []
@@ -1981,7 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 7
   OnTouch:
     m_PersistentCalls:
       m_Calls: []
@@ -2488,7 +2475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 4
   OnTouch:
     m_PersistentCalls:
       m_Calls: []
@@ -2941,7 +2928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 5
   OnTouch:
     m_PersistentCalls:
       m_Calls: []
@@ -2967,7 +2954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7494168684268066675
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3225,7 +3212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 6
   OnTouch:
     m_PersistentCalls:
       m_Calls: []
@@ -3423,7 +3410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac13280b58d3f949a9f3c5ee0b48402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 1
   OnTouch:
     m_PersistentCalls:
       m_Calls: []

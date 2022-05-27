@@ -13,7 +13,12 @@ namespace ISVR.Core {
         [SerializeField] private float castRate = 1f;
 
         public UnityEvent<RaycastHit[]> OnRayReturn;
+
         public Transform Origin => origin;
+        public float Distance {
+            get { return distance; }
+            set { distance = value; }
+        }
 
         private Coroutine _castRayCoroutine;
 

@@ -9,6 +9,10 @@ namespace ISVR.UI {
         [SerializeField] private Transform projection;
         [SerializeField] private Fingertip fingertip;
         [SerializeField] private TouchButton powerButton;
+        [SerializeField] private TouchButton powerBoostButton;
+        [SerializeField] private TouchButton harmonicSoundButton;
+        [SerializeField] private TouchButton volumePositiveButton;
+        [SerializeField] private TouchButton volumeNegativeButton;
         [SerializeField] private List<TouchButton> otherButtons;
         [SerializeField] private TextMeshProUGUI debugText;
 
@@ -22,6 +26,26 @@ namespace ISVR.UI {
             powerButton.OnTouch.AddListener(() => {
                 _locator.Toggle();
                 SetDebugText(powerButton.Name);
+            });
+
+            powerBoostButton.OnTouch.AddListener(() => {
+                _locator.ToggleBoost();
+                SetDebugText(powerBoostButton.Name);
+            });
+
+            harmonicSoundButton.OnTouch.AddListener(() => {
+                _locator.ToggleSound();
+                SetDebugText(harmonicSoundButton.Name);
+            });
+
+            volumePositiveButton.OnTouch.AddListener(() => {
+                _locator.VolumeUp();
+                SetDebugText(volumePositiveButton.Name);
+            });
+
+            volumeNegativeButton.OnTouch.AddListener(() => {
+                _locator.VolumeDown();
+                SetDebugText(volumeNegativeButton.Name);
             });
 
             foreach (var button in otherButtons) {

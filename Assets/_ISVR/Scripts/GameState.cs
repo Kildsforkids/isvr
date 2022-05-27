@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ISVR.Core.Bugs;
+using ISVR.Core.Devices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,18 +14,18 @@ namespace ISVR {
         [SerializeField] private NonlinearLocator nonlinearLocator;
         [SerializeField] private int bugMarksMaxCount;
         [SerializeField] private float bugMarkMaxSearchDistance;
-        [SerializeField] private List<Bug> bugs;
+        [SerializeField] private List<Wiretapper> wiretappers;
         [SerializeField] private BugMark[] bugMarks;
 
         public bool IsTaskEnded => _isTaskEnded;
         
-        private List<BugMark> correctBugMarks;
+        private List<BugMark> _correctBugMarks;
         private bool _isTaskEnded;
         private bool _isMuted;
 
         private void Awake() {
             bugMarks = new BugMark[bugMarksMaxCount];
-            correctBugMarks = new List<BugMark>();
+            _correctBugMarks = new List<BugMark>();
             Instance = this;
         }
 
@@ -36,6 +37,10 @@ namespace ISVR {
 
         public void ResetLevel() {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void AddWiretapper(Wiretapper wiretapper) {
+
         }
         
         public void ToggleSound() {
@@ -66,25 +71,25 @@ namespace ISVR {
             //     outline.OutlineColor = Color.yellow;
             //     outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
             // }
-            foreach (var bug in bugs) {
-                bug.gameObject.layer = 7;
-                var meshRenderer = bug.GetComponent<MeshRenderer>();
+            foreach (var wiretapper in wiretappers) {
+                wiretapper.gameObject.layer = 7;
+                var meshRenderer = wiretapper.GetComponent<MeshRenderer>();
                 if (!meshRenderer.enabled) {
                     meshRenderer.enabled = true;
                 }
             }
             if (bugMarksCount > 0) {
-                foreach (var bug in bugs) {
-                    var bugMark = GetNearestBugMark(bug.transform.position, bugMarkMaxSearchDistance);
+                foreach (var wiretapper in wiretappers) {
+                    var bugMark = GetNearestBugMark(wiretapper.transform.position, bugMarkMaxSearchDistance);
                     if (bugMark != null) {
-                        correctBugMarks.Add(bugMark);
+                        _correctBugMarks.Add(bugMark);
                     }
                 }
-                foreach (var bugMark in correctBugMarks) {
+                foreach (var bugMark in _correctBugMarks) {
                     bugMark.HighlightAsBug();
                 }
-                float bugsCount = bugs.Count;
-                float correctBugMarksCount = correctBugMarks.Count;
+                float bugsCount = wiretappers.Count;
+                float correctBugMarksCount = _correctBugMarks.Count;
                 float result = (float)correctBugMarksCount / bugMarksCount -
                     (float)(bugsCount - correctBugMarksCount) / bugsCount;
                 if (result < 0f) {

@@ -8,7 +8,6 @@ namespace ISVR {
     [RequireComponent(typeof(Raycaster), typeof(CommandPanel))]
     public class NonlinearLocator : MonoBehaviour {
 
-        [SerializeField] private string defaultDebugText;
         [SerializeField] private Indicator indicator;
         [SerializeField] private Bar bar;
         [SerializeField] private Vector2 errorRate;
@@ -17,12 +16,11 @@ namespace ISVR {
         public bool IsActive => _isActive;
 
         private Raycaster _raycaster;
-        private CommandPanel _commandPanel;
         private bool _isActive;
+        private bool _isBoosted;
 
         private void Awake() {
             _raycaster = GetComponent<Raycaster>();
-            _commandPanel = GetComponent<CommandPanel>();
         }
 
         private void Start() {
@@ -51,6 +49,14 @@ namespace ISVR {
             }
         }
 
+        public void ToggleBoost() {
+            if (_isBoosted) {
+                BoostDown();
+            } else {
+                BoostUp();
+            }
+        }
+
         public void TurnSoundOn() {
             if (audioSource.enabled) return;
             audioSource.enabled = true;
@@ -69,6 +75,14 @@ namespace ISVR {
             }
         }
 
+        public void VolumeUp(float value = 0.1f) {
+            audioSource.volume = Mathf.Clamp01(audioSource.volume + value);
+        }
+
+        public void VolumeDown(float value = 0.1f) {
+            audioSource.volume = Mathf.Clamp01(audioSource.volume - value);
+        }
+
         private void StartRaycaster() {
             _raycaster.CastRayInfinite();
         }
@@ -76,14 +90,6 @@ namespace ISVR {
         private void StopRaycaster() {
             _raycaster.StopCastRay();
         }
-
-        // private void UpdateDebugText(string text) {
-        //     if (text == null) {
-        //         _commandPanel.UpdateDebugText(defaultDebugText);
-        //     } else {
-        //         _commandPanel.UpdateDebugText(text);
-        //     }
-        // }
 
         private void CalculateImpact(RaycastHit[] hits) {
             float average = 0f;
@@ -106,6 +112,18 @@ namespace ISVR {
                 audioSource.Pause();
             }
             bar.SetValue(average);
+        }
+
+        private void BoostUp() {
+            if (_isBoosted) return;
+            _raycaster.Distance = _raycaster.Distance * 2f;
+            _isBoosted = true;
+        }
+
+        private void BoostDown() {
+            if (!_isBoosted) return;
+            _raycaster.Distance = _raycaster.Distance / 2f;
+            _isBoosted = false;
         }
     }
 }

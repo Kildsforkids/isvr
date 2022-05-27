@@ -80,7 +80,6 @@ namespace ISVR {
             float result = CalculatePredictResult();
             // resultText.text = $"{(result * 100f):0.##}%";
             // resultText.enabled = true;
-            Player.EndLevel();
             _isLevelEnded = true;
         }
 
