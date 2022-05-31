@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Wall
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: _METALLICGLOSSMAP _METALLICSPECGLOSSMAP _NORMALMAP
+  m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -22,7 +22,7 @@ Material:
     m_TexEnvs:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 9e6dfc46fbaf46544b6dabf32a9ec54a, type: 3}
-        m_Scale: {x: 10.7, y: 22.7}
+        m_Scale: {x: 10.7, y: 23.6}
         m_Offset: {x: 1.2, y: -0.28}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 24b0743e4038c304bbbf828a877f4986, type: 3}
@@ -46,7 +46,7 @@ Material:
         m_Offset: {x: 1.2, y: -0.28}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 9e6dfc46fbaf46544b6dabf32a9ec54a, type: 3}
-        m_Scale: {x: 10.7, y: 22.7}
+        m_Scale: {x: 10.7, y: 23.6}
         m_Offset: {x: 1.2, y: -0.28}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: 89469eb524d6a3543a675c58ee98fcfd, type: 3}

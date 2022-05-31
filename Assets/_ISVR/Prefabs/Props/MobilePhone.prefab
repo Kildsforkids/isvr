@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 2051895400172132978}
   - component: {fileID: 6804935345898981379}
   - component: {fileID: 4922474954431665708}
-  - component: {fileID: -8567900679086124234}
   - component: {fileID: -5522617721376207824}
   - component: {fileID: 2425034957977113844}
-  - component: {fileID: 5535066382455575992}
+  - component: {fileID: 681968072}
+  - component: {fileID: 681968073}
   m_Layer: 0
   m_Name: MobilePhone
   m_TagString: Untagged
@@ -117,33 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8567900679086124234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817358808014713712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe2395fd600320648b0a2f709e16f370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transferOnSecondSelection: 1
-  _addNewPointsToFront: 0
-  _forwardElement: {fileID: 0}
-  _oneGrabTransformer: {fileID: -5522617721376207824}
-  _twoGrabTransformer: {fileID: 0}
-  _maxGrabPoints: -1
-  OnGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  OnRelease:
-    m_PersistentCalls:
-      m_Calls: []
-  OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-5522617721376207824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,14 +145,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxInteractors: -1
   _maxSelectingInteractors: -1
-  _pointableElement: {fileID: -8567900679086124234}
+  _pointableElement: {fileID: 681968072}
   _rigidbody: {fileID: 4922474954431665708}
   _grabSource: {fileID: 2063523500782298596}
   _useClosestPointAsGrabSource: 0
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
---- !u!114 &5535066382455575992
+--- !u!114 &681968072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,7 +161,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8817358808014713712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f09962e9a9fd7448c9e75e116eeac8, type: 3}
+  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 2
+  _transferOnSecondSelection: 1
+  _addNewPointsToFront: 0
+  _forwardElement: {fileID: 0}
+  _oneGrabTransformer: {fileID: -5522617721376207824}
+  _twoGrabTransformer: {fileID: 0}
+  _maxGrabPoints: -1
+--- !u!114 &681968073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817358808014713712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7288974416ba9468c122b26af2bc72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 1

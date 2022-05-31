@@ -1,5 +1,7 @@
 using UnityEngine;
 using ISVR.Core;
+using System.Collections.Generic;
+using Oculus.Interaction;
 
 namespace ISVR {
 
@@ -7,6 +9,7 @@ namespace ISVR {
 
         [SerializeField] private Transform head;
         [SerializeField] private OVRPlayerController playerController;
+        [SerializeField] private List<RayInteractor> rayInteractors;
 
         public Transform Head => head;
 
@@ -49,6 +52,18 @@ namespace ISVR {
 
         public void DisableLocomotion() {
             playerController.EnableLinearMovement = false;
+        }
+
+        public void EnableRayInteractors() {
+            foreach (var rayInteractor in rayInteractors) {
+                rayInteractor.gameObject.SetActive(true);
+            }
+        }
+
+        public void DisableRayInteractors() {
+            foreach (var rayInteractor in rayInteractors) {
+                rayInteractor.gameObject.SetActive(false);
+            }
         }
     }
 }

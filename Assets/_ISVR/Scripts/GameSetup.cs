@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Oculus.Interaction.Input;
 using ISVR.Core.Bugs;
 using ISVR.UI;
+using UnityEngine.Events;
 
 namespace ISVR {
 
@@ -24,6 +25,8 @@ namespace ISVR {
         [SerializeField] private List<Transform> bugMarksStopList;
         [SerializeField] private Counter bugMarksCounter;
 
+        public UnityEvent OnAwake;
+
         public Player Player => player;
         public int BugMarkersCount => bugMarks.Length;
 
@@ -36,6 +39,7 @@ namespace ISVR {
             _correctBugMarks = new List<BugMark>();
             Instance = this;
             Application.targetFrameRate = targetFrameRate;
+            OnAwake?.Invoke();
         }
 
         private void Start() {

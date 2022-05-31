@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2184365160225743315}
   - component: {fileID: 6683228147577092832}
   - component: {fileID: 7949565806756171689}
-  - component: {fileID: 7051960765055939965}
+  - component: {fileID: 347683874}
   m_Layer: 0
   m_Name: OfficeMonitor
   m_TagString: Untagged
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12.113972, y: 43.456745, z: 61.6194}
   m_Center: {x: -5.9774165, y: -3.6219037, z: 0.000009924529}
---- !u!114 &7051960765055939965
+--- !u!114 &347683874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7795659469929357987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f09962e9a9fd7448c9e75e116eeac8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e7288974416ba9468c122b26af2bc72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   value: 5

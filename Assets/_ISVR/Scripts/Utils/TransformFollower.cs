@@ -21,10 +21,11 @@ namespace ISVR.Utils {
             }
         }
 
-        private void SetInFront() {
+        public void SetInFront() {
             var offset = target.forward * this.offset.z +
                 target.up * this.offset.y;
             transform.position = target.position + offset;
+            transform.forward = target.forward;
         }
     }
 }

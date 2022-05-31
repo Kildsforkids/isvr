@@ -24,14 +24,14 @@ namespace ISVR.Utils {
             }
         }
 
-        private void Default() {
+        public void Default() {
             if (_volume.profile.TryGet(out ColorAdjustments colorAdjustments)) {
                 colorAdjustments.saturation.value = 0;
                 _isNoir = false;
             }
         }
 
-        private void Noir() {
+        public void Noir() {
             if (_volume.profile.TryGet(out ColorAdjustments colorAdjustments)) {
                 colorAdjustments.saturation.value = -100;
                 _isNoir = true;
