@@ -33,6 +33,7 @@ namespace ISVR {
         private List<BugMark> _correctBugMarks;
         private bool _isLevelEnded;
         private int _bugMarksCount;
+        private GameSetup _instance;
 
         private void Awake() {
             bugMarks = new BugMark[bugMarksMaxCount];
