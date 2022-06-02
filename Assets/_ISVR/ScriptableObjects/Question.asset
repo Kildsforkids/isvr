@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Question
   m_EditorClassIdentifier: 
   Type: 2
-  Sprite: {fileID: 21300000, guid: b4cbde153014a6f45947e12dc183c883, type: 3}
+  Sprite: {fileID: 21300000, guid: d1f78a21e1831434eb6c291bba437288, type: 3}
   Color: {r: 1, g: 0.7411765, b: 0, a: 1}

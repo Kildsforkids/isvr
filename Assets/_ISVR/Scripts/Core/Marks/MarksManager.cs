@@ -25,11 +25,11 @@ namespace ISVR.Core.Marks {
         }
 
         public void SelectNext() {
-            Select(_id++);
+            Select(++_id);
         }
 
         public void SelectPrevious() {
-            Select(_id--);
+            Select(--_id);
         }
 
         private void Select(int id) {

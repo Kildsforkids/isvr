@@ -12,6 +12,7 @@ namespace ISVR.Core.Marks {
         }
 
         public void ChangeType(MarkTypeSO markTypeSO) {
+            Debug.Log($"Changed on {markTypeSO.Type}");
             this.markTypeSO = markTypeSO;
             UpdateView();
         }
