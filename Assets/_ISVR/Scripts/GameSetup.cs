@@ -22,7 +22,7 @@ namespace ISVR {
         [SerializeField] private float bugMarkMaxSearchDistance;
         [SerializeField] private List<Bug> bugs;
         [SerializeField] private BugMark[] bugMarks;
-        [SerializeField] private List<Transform> bugMarksStopList;
+        //[SerializeField] private List<Transform> bugMarksStopList;
         [SerializeField] private Counter bugMarksCounter;
 
         public UnityEvent OnAwake;
@@ -92,9 +92,9 @@ namespace ISVR {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        public bool FindInStopList(Transform transform) {
-            return bugMarksStopList.Contains(transform);
-        }
+        //public bool FindInStopList(Transform transform) {
+        //    return bugMarksStopList.Contains(transform);
+        //}
 
         private float CalculatePredictResult() {
             int bugMarksCount = 0;
