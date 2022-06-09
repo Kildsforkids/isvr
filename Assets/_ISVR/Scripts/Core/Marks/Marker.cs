@@ -31,15 +31,20 @@ namespace ISVR.Core.Marks {
                 SetLine(origin.position, _hit.point);
                 ghost.SetPosition(_hit.point);
 
-                if (_hit.transform.TryGetComponent(out _selectedMark)) {
+                if (_hit.transform.TryGetComponent(out Mark mark)) {
+                    _selectedMark?.Deselect();
+                    _selectedMark = mark;
+                    _selectedMark.Select();
                     ChangeState(MarkerState.Remove);
                     ghost.Hide();
                 } else {
+                    _selectedMark?.Deselect();
                     ChangeState(MarkerState.Add);
                     ShowGhostLine();
                     ghost.Show();
                 }
             } else {
+                _selectedMark?.Deselect();
                 HideGhostLine();
             }
         }

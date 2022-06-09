@@ -4,7 +4,7 @@ namespace ISVR.Core.Marks {
 
     public class GhostMark : MonoBehaviour {
 
-        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] protected MeshRenderer meshRenderer;
         [SerializeField] private MarkTypeSO markTypeSO;
 
         public MarkTypeSO MarkTypeSO => markTypeSO;
