@@ -7,8 +7,9 @@ namespace ISVR.Core.Marks {
         [SerializeField] private Transform origin;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private GhostMark ghost;
-        [SerializeField] private float maxDistance;
+        [SerializeField] private float rayOffset;
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private float maxDistance;
 
         private bool _isActive;
         private bool _isHidden;
@@ -26,9 +27,15 @@ namespace ISVR.Core.Marks {
 
         private void Update() {
             if (!_isActive) return;
-            if (CastRay(origin.position, origin.forward, out _hit, maxDistance, layerMask)) {
+            if (CastRay(
+                origin.position,
+                origin.forward,
+                out _hit,
+                (maxDistance < float.Epsilon) ? Mathf.Infinity : maxDistance,
+                layerMask)) {
 
-                SetLine(origin.position, _hit.point);
+                Vector3 rayOffsetVector = origin.forward * rayOffset;
+                SetLine(origin.position + rayOffsetVector, _hit.point - rayOffsetVector);
                 ghost.SetPosition(_hit.point);
 
                 if (_hit.transform.TryGetComponent(out Mark mark)) {
@@ -45,7 +52,9 @@ namespace ISVR.Core.Marks {
                 }
             } else {
                 _selectedMark?.Deselect();
-                HideGhostLine();
+                ghost.Hide();
+                Vector3 rayOffsetVector = origin.forward * rayOffset;
+                SetLine(origin.position + rayOffsetVector, origin.position + origin.forward * 0.2f);
             }
         }
 
