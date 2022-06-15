@@ -180,7 +180,6 @@ namespace Oculus.Interaction
             if (rigidbody == null)
             {
                 rigidbody = CreateRigidBody();
-                DontDestroyOnLoad(rigidbody);
                 _cachedGrabbingRigidbodies.Add(rigidbody);
             }
             rigidbody.gameObject.SetActive(true);
@@ -196,8 +195,6 @@ namespace Oculus.Interaction
         {
             if (_grabbingRigidbody != null)
             {
-                //Destroy(_grabbingRigidbody.gameObject);
-                //_cachedGrabbingRigidbodies.Clear();
                 _grabbingRigidbody.gameObject.SetActive(false);
                 _grabbingRigidbody.isKinematic = true;
                 _grabbingRigidbody = null;

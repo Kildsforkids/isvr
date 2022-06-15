@@ -99,6 +99,14 @@ namespace Oculus.Interaction
             }
         }
 
+        protected void FireSelectAction(bool selected) {
+            if (selected) {
+                WhenSelected();
+            } else {
+                WhenUnselected();
+            }
+        }
+
         #region Inject
 
         public void InjectAllControllerSelector(IController controller)

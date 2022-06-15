@@ -141,6 +141,8 @@ public class OVRPlayerController : MonoBehaviour
 	/// </summary>
 	public bool RotationEitherThumbstick = false;
 
+	public UnityEvent OnStartRotation;
+
 	protected CharacterController Controller = null;
 	protected OVRCameraRig CameraRig = null;
 
@@ -157,19 +159,11 @@ public class OVRPlayerController : MonoBehaviour
 	private bool prevHatRight = false;
 	private float SimulationRate = 60f;
 	private float buttonRotation = 0f;
-	private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
+	private bool ReadyToSnapTurn = true; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
 	private bool playerControllerEnabled = false;
-
-	// Custom fields for ISVR
-	[SerializeField] private bool useFadeOnRotation;
-
-	public UnityEvent OnSnapRotationBegin;
-	public UnityEvent OnSnapRotationEnd;
-
-	public bool IsFading { get; set; }
-	public bool CanTurn { get; set; }
-
-	private bool _isRightRotation;
+	private Vector3 euler;
+	private float _lastSnapRotationRatchet;
+	private bool _rotationPerformed;
 
 	void Start()
 	{
@@ -333,10 +327,6 @@ public class OVRPlayerController : MonoBehaviour
 			MoveThrottle += (actualXZ - predictedXZ) / (SimulationRate * Time.deltaTime);
 	}
 
-
-
-
-
 	public virtual void UpdateMovement()
 	{
 		//todo: enable for Unity Input System
@@ -353,14 +343,14 @@ public class OVRPlayerController : MonoBehaviour
 
 			bool dpad_move = false;
 
-			if (OVRInput.Get(OVRInput.Button.DpadUp, OVRInput.Controller.LTouch))
+			if (OVRInput.Get(OVRInput.Button.DpadUp))
 			{
 				moveForward = true;
 				dpad_move = true;
 
 			}
 
-			if (OVRInput.Get(OVRInput.Button.DpadDown, OVRInput.Controller.LTouch))
+			if (OVRInput.Get(OVRInput.Button.DpadDown))
 			{
 				moveBack = true;
 				dpad_move = true;
@@ -407,7 +397,7 @@ public class OVRPlayerController : MonoBehaviour
 			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 #endif
 
-			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch);
+			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
 			if (FixedSpeedSteps > 0)
@@ -434,122 +424,93 @@ public class OVRPlayerController : MonoBehaviour
 
 		if (EnableRotation)
 		{
-			Vector3 euler = RotateAroundGuardianCenter ? transform.rotation.eulerAngles : Vector3.zero;
-			float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
-
-			bool curHatLeft = OVRInput.Get(OVRInput.Button.PrimaryShoulder);
-
-			if (curHatLeft && !prevHatLeft)
-				euler.y -= RotationRatchet;
-
-			prevHatLeft = curHatLeft;
-
-			bool curHatRight = OVRInput.Get(OVRInput.Button.SecondaryShoulder);
-
-			if (curHatRight && !prevHatRight)
-				euler.y += RotationRatchet;
-
-			prevHatRight = curHatRight;
-
-			euler.y += buttonRotation;
-			buttonRotation = 0f;
-
-
-#if !UNITY_ANDROID || UNITY_EDITOR
-			if (!SkipMouseRotation)
-				euler.y += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
-#endif
-			if (useFadeOnRotation) {
-				if (CanTurn) {
-					CanTurn = false;
-					if (_isRightRotation) {
-						euler.y += RotationRatchet;
-					} else {
-						euler.y -= RotationRatchet;
-					}
-
-					if (RotateAroundGuardianCenter)
-					{
-						transform.rotation = Quaternion.Euler(euler);
-					}
-					else
-					{
-						transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, euler.y);
-					}
-				} else {
-					if (!IsFading) {
-						if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft)) {
-							if (ReadyToSnapTurn) {
-								ReadyToSnapTurn = false;
-								IsFading = true;
-								_isRightRotation = false;
-								OnSnapRotationBegin?.Invoke();
-							}
-						} else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight)) {
-							if (ReadyToSnapTurn) {
-								ReadyToSnapTurn = false;
-								IsFading = true;
-								_isRightRotation = true;
-								OnSnapRotationBegin?.Invoke();
-							}
-						} else {
-							ReadyToSnapTurn = true;
-						}
-					}
-				}
-			} else {
-				if (SnapRotation)
-				{
-					if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
-						(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
-					{
-						if (ReadyToSnapTurn)
-						{
-							euler.y -= RotationRatchet;
-							ReadyToSnapTurn = false;
-						}
-					}
-					else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
-						(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
-					{
-						if (ReadyToSnapTurn)
-						{
-							euler.y += RotationRatchet;
-							ReadyToSnapTurn = false;
-						}
-					}
-					else
-					{
-						ReadyToSnapTurn = true;
-					}
-				}
-				else
-				{
-					Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-					if (RotationEitherThumbstick)
-					{
-						Vector2 altSecondaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-						if (secondaryAxis.sqrMagnitude < altSecondaryAxis.sqrMagnitude)
-						{
-							secondaryAxis = altSecondaryAxis;
-						}
-					}
-					euler.y += secondaryAxis.x * rotateInfluence;
-				}
-
-				if (RotateAroundGuardianCenter)
-				{
-					transform.rotation = Quaternion.Euler(euler);
-				}
-				else
-				{
-					transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, euler.y);
-				}
-			}
+			HandleRotation();
 		}
 #endif
 	}
 
+	public void RotateWithLastRotation() {
+		euler.y += _lastSnapRotationRatchet;
+		Rotate(euler);
+		_rotationPerformed = true;
+    }
+
+	private void HandleRotation() {
+		euler = RotateAroundGuardianCenter ? transform.rotation.eulerAngles : Vector3.zero;
+		float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
+
+		bool curHatLeft = OVRInput.Get(OVRInput.Button.PrimaryShoulder);
+
+		if (curHatLeft && !prevHatLeft)
+			euler.y -= RotationRatchet;
+
+		prevHatLeft = curHatLeft;
+
+		bool curHatRight = OVRInput.Get(OVRInput.Button.SecondaryShoulder);
+
+		if (curHatRight && !prevHatRight)
+			euler.y += RotationRatchet;
+
+		prevHatRight = curHatRight;
+
+		euler.y += buttonRotation;
+		buttonRotation = 0f;
+
+
+#if !UNITY_ANDROID || UNITY_EDITOR
+		if (!SkipMouseRotation)
+			euler.y += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
+#endif
+
+		if (SnapRotation)
+		{
+			HandleSnapRotation();
+		}
+		else
+		{
+			Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+			if (RotationEitherThumbstick)
+			{
+				Vector2 altSecondaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+				if (secondaryAxis.sqrMagnitude < altSecondaryAxis.sqrMagnitude)
+				{
+					secondaryAxis = altSecondaryAxis;
+				}
+			}
+			euler.y += secondaryAxis.x * rotateInfluence;
+		}
+
+		Rotate(euler);
+    }
+
+	private void Rotate(Vector3 euler) {
+		if (RotateAroundGuardianCenter) {
+			transform.rotation = Quaternion.Euler(euler);
+		} else {
+			transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, euler.y);
+		}
+	}
+
+	private void HandleSnapRotation() {
+		if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
+				(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft))) {
+			if (ReadyToSnapTurn) {
+				_lastSnapRotationRatchet = -RotationRatchet;
+				ReadyToSnapTurn = false;
+				OnStartRotation?.Invoke();
+			}
+		} else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
+			  (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight))) {
+			if (ReadyToSnapTurn) {
+				_lastSnapRotationRatchet = RotationRatchet;
+				ReadyToSnapTurn = false;
+				OnStartRotation?.Invoke();
+			}
+		} else {
+			if (_rotationPerformed)
+				ReadyToSnapTurn = true;
+        }
+    }
 
 	/// <summary>
 	/// Invoked by OVRCameraRig's UpdatedAnchors callback. Allows the Hmd rotation to update the facing direction of the player.

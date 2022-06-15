@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 7494168683213444742}
   - component: {fileID: 7494168683213444736}
   - component: {fileID: 7494168683213444743}
-  - component: {fileID: 7494168683213444739}
+  - component: {fileID: 114058367451437813}
   - component: {fileID: 7494168683213444737}
   - component: {fileID: 7494168683213444749}
   - component: {fileID: 7494168683213444748}
@@ -453,7 +453,7 @@ MonoBehaviour:
   bar: {fileID: 7494168682990199261}
   errorRate: {x: 0, y: 0.2}
   audioSource: {fileID: 7494168683213444748}
---- !u!114 &7494168683213444739
+--- !u!114 &114058367451437813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7494168683213444740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe2395fd600320648b0a2f709e16f370, type: 3}
+  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _transferOnSecondSelection: 1
@@ -471,51 +471,6 @@ MonoBehaviour:
   _oneGrabTransformer: {fileID: 7494168683213444749}
   _twoGrabTransformer: {fileID: 0}
   _maxGrabPoints: -1
-  OnGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  OnRelease:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7494168683213444743}
-        m_TargetAssemblyTypeName: ISVR.NonlinearLocator, Assembly-CSharp
-        m_MethodName: TurnOff
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ISVR.CommandPanel, Assembly-CSharp
-        m_MethodName: HideProjection
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnActivate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7494168683213444743}
-        m_TargetAssemblyTypeName: ISVR.NonlinearLocator, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
 --- !u!114 &7494168683213444737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxInteractors: -1
   _maxSelectingInteractors: -1
-  _pointableElement: {fileID: 7494168683213444739}
+  _pointableElement: {fileID: 114058367451437813}
   _rigidbody: {fileID: 7494168683213444742}
   _grabSource: {fileID: 7494168683213444741}
   _useClosestPointAsGrabSource: 0
