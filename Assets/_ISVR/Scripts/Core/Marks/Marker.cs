@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace ISVR.Core.Marks {
 
@@ -7,9 +8,6 @@ namespace ISVR.Core.Marks {
         [SerializeField] private Transform origin;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private GhostMark ghost;
-        [SerializeField] private float rayOffset;
-        [SerializeField] private LayerMask layerMask;
-        [SerializeField] private float maxDistance;
 
         private bool _isActive;
         private bool _isHidden;
@@ -20,6 +18,8 @@ namespace ISVR.Core.Marks {
         private MarkerState _markerState;
         private RaycastHit _hit;
         private Mark _selectedMark;
+        private Coroutine _deactiveCoroutine;
+        private MarksManager _marksManager;
 
         private void Start() {
             Hide();
@@ -31,10 +31,10 @@ namespace ISVR.Core.Marks {
                 origin.position,
                 origin.forward,
                 out _hit,
-                (maxDistance < float.Epsilon) ? Mathf.Infinity : maxDistance,
-                layerMask)) {
+                (_marksManager.MaxDistance < float.Epsilon) ? Mathf.Infinity : _marksManager.MaxDistance,
+                _marksManager.LayerMask)) {
 
-                Vector3 rayOffsetVector = origin.forward * rayOffset;
+                Vector3 rayOffsetVector = origin.forward * _marksManager.RayOffset;
                 SetLine(origin.position + rayOffsetVector, _hit.point - rayOffsetVector);
                 ghost.SetPosition(_hit.point);
 
@@ -53,9 +53,13 @@ namespace ISVR.Core.Marks {
             } else {
                 _selectedMark?.Deselect();
                 ghost.Hide();
-                Vector3 rayOffsetVector = origin.forward * rayOffset;
+                Vector3 rayOffsetVector = origin.forward * _marksManager.RayOffset;
                 SetLine(origin.position + rayOffsetVector, origin.position + origin.forward * 0.2f);
             }
+        }
+
+        public void SetMarksManager(MarksManager marksManager) {
+            _marksManager = marksManager;
         }
 
         public void Use(MarksManager marksManager) {
@@ -83,9 +87,32 @@ namespace ISVR.Core.Marks {
             }
         }
 
-        private void Show() {
-            ShowGhostLine();
-            _isActive = true;
+        public void Show() {
+
+            if (_isActive) {
+                Use();
+            } else {
+                ShowGhostLine();
+                _isActive = true;
+            }
+
+            if (_deactiveCoroutine != null) {
+                StopCoroutine(_deactiveCoroutine);
+            }
+
+            _deactiveCoroutine = StartCoroutine(DeactivateCoroutine(_marksManager.DeactivateTime));
+        }
+
+        private void Use() {
+            if (!_isActive) return;
+            switch (_markerState) {
+                case MarkerState.Add:
+                    CreateMark(_marksManager);
+                    break;
+                case MarkerState.Remove:
+                    RemoveMark(_marksManager);
+                    break;
+            }
         }
 
         private void Hide() {
@@ -105,6 +132,14 @@ namespace ISVR.Core.Marks {
             lineRenderer.enabled = false;
             ghost.Hide();
             _isHidden = true;
+        }
+
+        private IEnumerator DeactivateCoroutine(float seconds) {
+            while (seconds > 0f) {
+                seconds -= Time.deltaTime;
+                yield return null;
+            }
+            Hide();
         }
 
         private bool CastRay(Vector3 origin, Vector3 direction, out RaycastHit hit, float maxDisctance, LayerMask layerMask) {

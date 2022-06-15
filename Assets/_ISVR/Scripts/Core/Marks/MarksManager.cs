@@ -5,12 +5,26 @@ namespace ISVR.Core.Marks {
 
     public class MarksManager : MonoBehaviour {
 
-        [SerializeField] private Marker leftMarker;
-        [SerializeField] private Marker rightMarker;
+        [Header("Marks")]
         [SerializeField] private List<MarkTypeSO> markTypesSO;
         [SerializeField] private ObjectPooler objectPooler;
         [SerializeField] private int marksMaxCount;
         [SerializeField] private List<Mark> marks;
+
+        [Header("Markers")]
+        [SerializeField] private Marker leftMarker;
+        [SerializeField] private Marker rightMarker;
+
+        [Header("Markers Settings")]
+        [SerializeField] private float rayOffset;
+        [SerializeField] private LayerMask layerMask;
+        [SerializeField] private float maxDistance;
+        [SerializeField] private float deactivateTime;
+
+        public float RayOffset => rayOffset;
+        public LayerMask LayerMask => layerMask;
+        public float MaxDistance => maxDistance;
+        public float DeactivateTime => deactivateTime;
 
         private int _lastId => markTypesSO.Count - 1;
         private int _id;
@@ -19,6 +33,16 @@ namespace ISVR.Core.Marks {
             Select(0);
             objectPooler.Init(marksMaxCount);
             marks = new List<Mark>(objectPooler.GetComponentsInChildren<Mark>(true));
+            leftMarker.SetMarksManager(this);
+            rightMarker.SetMarksManager(this);
+        }
+
+        public void ActivateLeftMarker() {
+            leftMarker.Show();
+        }
+
+        public void ActivateRightMarker() {
+            rightMarker.Show();
         }
 
         public void ToggleLeftMarker() {
