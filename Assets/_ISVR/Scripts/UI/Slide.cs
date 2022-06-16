@@ -1,16 +1,19 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ISVR.UI {
     public class Slide : MonoBehaviour {
 
-        private bool _isVisible;
-        
-        public void Show() {
-            if (_isVisible) return;
+        [SerializeField] private Image image;
+        [SerializeField] private TextMeshProUGUI text;
+
+        public void SetBackgoundImage(Sprite sprite) {
+            image.sprite = sprite;
         }
 
-        public void Hide() {
-            if (!_isVisible) return;
+        public void SetText(string text) {
+            this.text.text = text;
         }
     }
 }
