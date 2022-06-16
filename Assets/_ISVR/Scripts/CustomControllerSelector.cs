@@ -3,7 +3,7 @@
 namespace ISVR {
     public class CustomControllerSelector : ControllerSelector {
 
-        private bool _selected;
+        private bool _lastSelected;
         private bool _wasSelected;
 
         protected override void Update() {
@@ -23,12 +23,12 @@ namespace ISVR {
         }
 
         private void Select() {
-            if (_selected) {
-                _selected = false;
+            if (_lastSelected) {
+                _lastSelected = false;
             } else {
-                _selected = true;
+                _lastSelected = true;
             }
-            FireSelectAction(_selected);
+            FireSelectAction(_lastSelected);
         }
     }
 }

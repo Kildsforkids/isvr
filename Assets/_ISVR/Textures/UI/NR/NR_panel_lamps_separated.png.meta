@@ -1,0 +1,1140 @@
+fileFormatVersion: 2
+guid: 60f6fb7388eefd342b336fbc81c15466
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 825805349867249782
+    second: NR_panel_lamps_white_0
+  - first:
+      213: 6607412387197355771
+    second: NR_panel_lamps_white_1
+  - first:
+      213: -8573986757211292953
+    second: NR_panel_lamps_white_2
+  - first:
+      213: -6129292945033218429
+    second: NR_panel_lamps_white_3
+  - first:
+      213: 9003726647439137156
+    second: NR_panel_lamps_white_4
+  - first:
+      213: -1798566837534013857
+    second: NR_panel_lamps_white_5
+  - first:
+      213: 3277346668240656767
+    second: NR_panel_lamps_white_6
+  - first:
+      213: 2102246896473024225
+    second: NR_panel_lamps_white_7
+  - first:
+      213: 9045970257933429698
+    second: NR_panel_lamps_white_8
+  - first:
+      213: 3159519865956457414
+    second: NR_panel_lamps_white_9
+  - first:
+      213: 7497136129008228475
+    second: NR_panel_lamps_white_10
+  - first:
+      213: 5766299063421134708
+    second: NR_panel_lamps_white_11
+  - first:
+      213: -998844204280108147
+    second: NR_panel_lamps_white_12
+  - first:
+      213: 524438704752212696
+    second: NR_panel_lamps_white_13
+  - first:
+      213: -4745725001404201951
+    second: NR_panel_lamps_white_14
+  - first:
+      213: -7425533384000426595
+    second: NR_panel_lamps_white_15
+  - first:
+      213: 3777609008156791088
+    second: NR_panel_lamps_white_16
+  - first:
+      213: 1415716603667417356
+    second: NR_panel_lamps_white_17
+  - first:
+      213: -7395531800509422698
+    second: NR_panel_lamps_white_18
+  - first:
+      213: 7102329821840710042
+    second: NR_panel_lamps_white_19
+  - first:
+      213: -3875512175997075400
+    second: NR_panel_lamps_white_20
+  - first:
+      213: -4861683490775638646
+    second: NR_panel_lamps_white_21
+  - first:
+      213: -2704028225051649728
+    second: NR_panel_lamps_white_22
+  - first:
+      213: -4390904960790902151
+    second: NR_panel_lamps_white_23
+  - first:
+      213: -4575988358702802728
+    second: NR_panel_lamps_white_24
+  - first:
+      213: 7177016943119587795
+    second: NR_panel_lamps_white_25
+  - first:
+      213: 6139829160711165486
+    second: NR_panel_lamps_white_26
+  - first:
+      213: -5870185835773580282
+    second: NR_panel_lamps_white_27
+  - first:
+      213: 8510594846252082236
+    second: NR_panel_lamps_white_28
+  - first:
+      213: 573149390558259620
+    second: NR_panel_lamps_white_29
+  - first:
+      213: -1612687060834633661
+    second: NR_panel_lamps_white_30
+  - first:
+      213: 4676320871335749872
+    second: NR_panel_lamps_white_31
+  - first:
+      213: -15953069656759908
+    second: NR_panel_lamps_white_32
+  - first:
+      213: -1805363940545335329
+    second: NR_panel_lamps_white_33
+  - first:
+      213: -9173655971912693957
+    second: NR_panel_lamps_white_34
+  - first:
+      213: -8677649302281467780
+    second: NR_panel_lamps_white_35
+  - first:
+      213: -8568992330283011418
+    second: NR_panel_lamps_white_36
+  - first:
+      213: 4446790631680109943
+    second: NR_panel_lamps_white_37
+  - first:
+      213: 7816673911370598387
+    second: NR_panel_lamps_white_38
+  - first:
+      213: 119881457519742185
+    second: NR_panel_lamps_white_39
+  - first:
+      213: 4545907183760369566
+    second: NR_panel_lamps_white_40
+  - first:
+      213: 4924366452087314529
+    second: NR_panel_lamps_white_41
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_0
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3679
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67064742799d57b00800000000000000
+      internalID: 825805349867249782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_1
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3679
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf60a6ffe8e32bb50800000000000000
+      internalID: 6607412387197355771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_2
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3597
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ea7483a874130980800000000000000
+      internalID: -8573986757211292953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_3
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3597
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 386bcf67a8060faa0800000000000000
+      internalID: -6129292945033218429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_4
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3515
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 489145b9ea9a3fc70800000000000000
+      internalID: 9003726647439137156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_5
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3515
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f56ccff8df43a07e0800000000000000
+      internalID: -1798566837534013857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_6
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3432
+        width: 58
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f795b4e3e697b7d20800000000000000
+      internalID: 3277346668240656767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_7
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3433
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e621760a6eac2d10800000000000000
+      internalID: 2102246896473024225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_8
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3325
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cbeed0a50eb98d70800000000000000
+      internalID: 9045970257933429698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_9
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3325
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cbdf17049ed8db20800000000000000
+      internalID: 3159519865956457414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_10
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3243
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78584a769d2b0860800000000000000
+      internalID: 7497136129008228475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_11
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3243
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47762ef6272060050800000000000000
+      internalID: 5766299063421134708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_12
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3159
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b2de10d746322f0800000000000000
+      internalID: -998844204280108147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_13
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3160
+        width: 58
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dab83f293e274700800000000000000
+      internalID: 524438704752212696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_14
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3078
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 124cc91514cc32eb0800000000000000
+      internalID: -4745725001404201951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_15
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 3078
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9da9dabab433f890800000000000000
+      internalID: -7425533384000426595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_16
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 2957
+        width: 59
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0315087d063cc6430800000000000000
+      internalID: 3777609008156791088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_17
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2970
+        width: 58
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c09083010c2a5a310800000000000000
+      internalID: 1415716603667417356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_18
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2970
+        width: 58
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 693e789b20bcd5990800000000000000
+      internalID: -7395531800509422698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_19
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2888
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a999a7cd75b809260800000000000000
+      internalID: 7102329821840710042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_20
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2888
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8304ef2953a673ac0800000000000000
+      internalID: -3875512175997075400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_21
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2806
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8ddfe99f94d78cb0800000000000000
+      internalID: -4861683490775638646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_22
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2806
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0499a27e7ac597ad0800000000000000
+      internalID: -2704028225051649728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_23
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2722
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ace81c33f5013c0800000000000000
+      internalID: -4390904960790902151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_24
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2722
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8523715d2de70c0800000000000000
+      internalID: -4575988358702802728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_25
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2616
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d95a9162e2e99360800000000000000
+      internalID: 7177016943119587795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_26
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2616
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2616c9671e053550800000000000000
+      internalID: 6139829160711165486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_27
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 2532
+        width: 59
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60caf2d7519e88ea0800000000000000
+      internalID: -5870185835773580282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_28
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2534
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34202eebe4bb1670800000000000000
+      internalID: 8510594846252082236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_29
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2534
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a9e473855c34f700800000000000000
+      internalID: 573149390558259620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_30
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2450
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 348351d99a59e99e0800000000000000
+      internalID: -1612687060834633661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_31
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2450
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f866b76e01a5e040800000000000000
+      internalID: 4676320871335749872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_32
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 2368
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c91280684c257cff0800000000000000
+      internalID: -15953069656759908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_33
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 2368
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdfee71bf0f02f6e0800000000000000
+      internalID: -1805363940545335329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_34
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 2062
+        width: 58
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b37c0866f70a0b080800000000000000
+      internalID: -9173655971912693957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_35
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 1968
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c78c81c8febc29780800000000000000
+      internalID: -8677649302281467780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_36
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1448
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a23f6640e2d41980800000000000000
+      internalID: -8568992330283011418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_37
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1332
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77de3d7f48c26bd30800000000000000
+      internalID: 4446790631680109943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_38
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1216
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7ce4402876a7c60800000000000000
+      internalID: 7816673911370598387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_39
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1100
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ecce9aec87e9a100800000000000000
+      internalID: 119881457519742185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_40
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 819
+        width: 58
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e97eee59f7e461f30800000000000000
+      internalID: 4545907183760369566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NR_panel_lamps_white_41
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 703
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168d380a23dd65440800000000000000
+      internalID: 4924366452087314529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

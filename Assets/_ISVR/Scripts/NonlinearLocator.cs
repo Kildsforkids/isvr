@@ -2,16 +2,27 @@ using UnityEngine;
 using ISVR.Core;
 using ISVR.UI;
 using ISVR.Core.Devices;
+using UnityEngine.Events;
 
 namespace ISVR {
 
-    [RequireComponent(typeof(Raycaster), typeof(CommandPanel))]
+    [RequireComponent(typeof(Raycaster))]
     public class NonlinearLocator : MonoBehaviour {
 
         [SerializeField] private Indicator indicator;
         [SerializeField] private Bar bar;
         [SerializeField] private Vector2 errorRate;
         [SerializeField] private AudioSource audioSource;
+
+        [SerializeField] private LedLightGroupTracker secondHarmonic;
+        [SerializeField] private LedLightGroupTracker thirdHarmonic;
+
+        public UnityEvent OnTurnOn;
+        public UnityEvent OnTurnOff;
+        public UnityEvent OnToggleBoost;
+        public UnityEvent OnToggleSound;
+        public UnityEvent OnToggleChannel;
+        public UnityEvent OnToggle20KMode;
 
         public bool IsActive => _isActive;
 
@@ -31,14 +42,16 @@ namespace ISVR {
             StartRaycaster();
             indicator?.Activate();
             _isActive = true;
+            OnTurnOn?.Invoke();
         }
 
         public void TurnOff() {
             StopRaycaster();
-            bar.SetValue(0f);
+            bar?.SetValue(0f);
             indicator?.Deactivate();
             _isActive = false;
             audioSource.Pause();
+            OnTurnOff.Invoke();
         }
 
         public void Toggle() {
@@ -50,11 +63,13 @@ namespace ISVR {
         }
 
         public void ToggleBoost() {
+            if (!IsActive) return;
             if (_isBoosted) {
                 BoostDown();
             } else {
                 BoostUp();
             }
+            OnToggleBoost?.Invoke();
         }
 
         public void TurnSoundOn() {
@@ -68,18 +83,22 @@ namespace ISVR {
         }
 
         public void ToggleSound() {
+            if (!IsActive) return;
             if (audioSource.enabled) {
                 TurnSoundOff();
             } else {
                 TurnSoundOn();
             }
+            OnToggleSound?.Invoke();
         }
 
         public void VolumeUp(float value = 0.1f) {
+            if (!IsActive) return;
             audioSource.volume = Mathf.Clamp01(audioSource.volume + value);
         }
 
         public void VolumeDown(float value = 0.1f) {
+            if (!IsActive) return;
             audioSource.volume = Mathf.Clamp01(audioSource.volume - value);
         }
 
@@ -115,12 +134,14 @@ namespace ISVR {
         }
 
         private void BoostUp() {
+            if (!IsActive) return;
             if (_isBoosted) return;
             _raycaster.Distance = _raycaster.Distance * 2f;
             _isBoosted = true;
         }
 
         private void BoostDown() {
+            if (!IsActive) return;
             if (!_isBoosted) return;
             _raycaster.Distance = _raycaster.Distance / 2f;
             _isBoosted = false;
