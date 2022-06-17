@@ -35,7 +35,6 @@ namespace ISVR {
                 Destroy(electrical);
             }
             var bugComponent = spawner.gameObject.AddComponent<Bug>();
-            bugComponent.Value = 10f;
             return true;
         }
     }

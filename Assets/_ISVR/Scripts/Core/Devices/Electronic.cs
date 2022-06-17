@@ -1,17 +1,6 @@
-using UnityEngine;
-
 namespace ISVR.Core.Devices {
-    public class Electronic : MonoBehaviour {
+    public class Electronic : Emitter {
 
-        [SerializeField] private float value;
-
-        public float Value {
-            get {
-                return value;
-            }
-            set {
-                this.value = value;
-            }
-        }
+        
     }
 }

@@ -29,9 +29,11 @@ namespace ISVR {
         private Raycaster _raycaster;
         private bool _isActive;
         private bool _isBoosted;
+        private Harmonic _currentHarmonic;
 
         private void Awake() {
             _raycaster = GetComponent<Raycaster>();
+            _currentHarmonic = Harmonic.Second;
         }
 
         private void Start() {
@@ -40,15 +42,15 @@ namespace ISVR {
 
         public void TurnOn() {
             StartRaycaster();
-            indicator?.Activate();
+            //indicator?.Activate();
             _isActive = true;
             OnTurnOn?.Invoke();
         }
 
         public void TurnOff() {
             StopRaycaster();
-            bar?.SetValue(0f);
-            indicator?.Deactivate();
+            //bar?.SetValue(0f);
+            //indicator?.Deactivate();
             _isActive = false;
             audioSource.Pause();
             OnTurnOff.Invoke();
@@ -111,26 +113,47 @@ namespace ISVR {
         }
 
         private void CalculateImpact(RaycastHit[] hits) {
-            float average = 0f;
-            int electricalCount = 0;
-            float maxValue = 0;
+            float secondHarmonicMaxValue = 0f;
+            float thirdHarmonicMaxValue = 0f;
+
             foreach (var hit in hits) {
-                if (hit.transform.TryGetComponent(out Electronic electrical)) {
-                    average += electrical.Value;
-                    maxValue = electrical.Value > maxValue ? electrical.Value : maxValue;
-                    electricalCount++;
+                if (hit.transform.TryGetComponent(out Emitter emitter)) {
+
+                    Vector3 vectorA = emitter.transform.position - transform.position;
+                    Vector3 vectorB = _raycaster.Origin.forward;
+
+                    float angle = Vector3.Angle(vectorA, vectorB);
+
+                    float secondHarmonicValue = GetValueByAngle(emitter.SecondHarmonicValue, angle);
+                    float thirdHarmonicValue = GetValueByAngle(emitter.ThirdHarmonicValue, angle);
+
+                    secondHarmonicMaxValue = Mathf.Max(secondHarmonicMaxValue, secondHarmonicValue);
+                    thirdHarmonicMaxValue = Mathf.Max(thirdHarmonicMaxValue, thirdHarmonicValue);
                 }
             }
-            if (electricalCount > 0) {
-                average /= electricalCount / maxValue;
+
+            secondHarmonic.SetTrackValue(secondHarmonicMaxValue);
+            thirdHarmonic.SetTrackValue(thirdHarmonicMaxValue);
+
+            switch (_currentHarmonic) {
+                case Harmonic.Second:
+                    PlaySoundOnValue(secondHarmonicMaxValue);
+                break;
+                case Harmonic.Third:
+                    PlaySoundOnValue(thirdHarmonicMaxValue);
+                break;
             }
-            average = Mathf.Clamp01(average + Random.Range(errorRate.x, errorRate.y));
-            if (average > 0.8f) {
+        }
+
+        private float GetValueByAngle(float value, float angle) =>
+            value * Mathf.Cos(angle * Mathf.Deg2Rad);
+
+        private void PlaySoundOnValue(float value) {
+            if (value > 20f) {
                 audioSource.Play();
             } else {
                 audioSource.Pause();
             }
-            bar.SetValue(average);
         }
 
         private void BoostUp() {
@@ -146,5 +169,11 @@ namespace ISVR {
             _raycaster.Distance = _raycaster.Distance / 2f;
             _isBoosted = false;
         }
+    }
+
+    public enum Harmonic {
+        None,
+        Second,
+        Third
     }
 }

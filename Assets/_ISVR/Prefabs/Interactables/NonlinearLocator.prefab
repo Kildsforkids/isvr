@@ -9185,7 +9185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7494168683467762048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10008,7 +10008,19 @@ MonoBehaviour:
   name: 4
   OnTouch:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7494168683213444743}
+        m_TargetAssemblyTypeName: ISVR.NonlinearLocator, Assembly-CSharp
+        m_MethodName: VolumeUp
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnStay:
     m_PersistentCalls:
       m_Calls: []
@@ -10386,7 +10398,19 @@ MonoBehaviour:
   name: 5
   OnTouch:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7494168683213444743}
+        m_TargetAssemblyTypeName: ISVR.NonlinearLocator, Assembly-CSharp
+        m_MethodName: VolumeDown
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnStay:
     m_PersistentCalls:
       m_Calls: []
