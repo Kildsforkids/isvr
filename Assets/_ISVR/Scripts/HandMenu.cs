@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using Oculus.Interaction;
 
 namespace ISVR {
 
     public class HandMenu : MonoBehaviour {
 
         [SerializeField] private Canvas canvas;
+        [SerializeField] private GrabInteractor grabInteractor;
         [SerializeField] private List<HandMenuOption> options;
 
         public UnityEvent OnShow;
@@ -15,14 +17,20 @@ namespace ISVR {
         public bool IsActive { get; private set; }
 
         private int selectedOptionIndex;
+        private Vector3 _defaultLocalPosition;
 
         private void Start() {
             selectedOptionIndex = 0;
             SelectOption(selectedOptionIndex);
+            _defaultLocalPosition = transform.localPosition;
         }
 
         public void Show() {
             if (IsActive) return;
+            transform.localPosition = _defaultLocalPosition;
+            if (grabInteractor.HasSelectedInteractable) {
+                transform.localPosition += Vector3.right * 0.1f;
+            }
             canvas.enabled = true;
             IsActive = true;
             OnShow?.Invoke();

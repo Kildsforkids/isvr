@@ -6,13 +6,9 @@ namespace ISVR.UI {
     [RequireComponent(typeof(Collider), typeof(Rigidbody))]
     public class TouchButton : MonoBehaviour {
 
-        [SerializeField] private string name;
-
         public UnityEvent OnTouch;
         public UnityEvent OnStay;
 
-        public string Name => name;
-        
         private void OnTriggerEnter(Collider other) {
             if (other.TryGetComponent(out Fingertip fingertip)) {
                 OnTouch?.Invoke();

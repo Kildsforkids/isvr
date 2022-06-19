@@ -9,13 +9,12 @@ namespace ISVR {
     [RequireComponent(typeof(Raycaster))]
     public class NonlinearLocator : MonoBehaviour {
 
-        [SerializeField] private Indicator indicator;
-        [SerializeField] private Bar bar;
-        [SerializeField] private Vector2 errorRate;
         [SerializeField] private AudioSource audioSource;
 
         [SerializeField] private LedLightGroupTracker secondHarmonic;
         [SerializeField] private LedLightGroupTracker thirdHarmonic;
+        [SerializeField] private LedLightGroupTracker secondHarmonicGhost;
+        [SerializeField] private LedLightGroupTracker thirdHarmonicGhost;
 
         public UnityEvent OnTurnOn;
         public UnityEvent OnTurnOff;
@@ -23,13 +22,19 @@ namespace ISVR {
         public UnityEvent OnToggleSound;
         public UnityEvent OnToggleChannel;
         public UnityEvent OnToggle20KMode;
+        public UnityEvent OnAttenuationUp;
+        public UnityEvent OnAttenuationDown;
 
         public bool IsActive => _isActive;
 
         private Raycaster _raycaster;
         private bool _isActive;
         private bool _isBoosted;
+        private bool _is20KModeOn;
+        private bool _isRadioChannelOn;
         private Harmonic _currentHarmonic;
+        private float[] _attenuation = { 10f, 20f, 30f, 40f };
+        private int _currentAttenuationIndex;
 
         private void Awake() {
             _raycaster = GetComponent<Raycaster>();
@@ -42,15 +47,12 @@ namespace ISVR {
 
         public void TurnOn() {
             StartRaycaster();
-            //indicator?.Activate();
             _isActive = true;
             OnTurnOn?.Invoke();
         }
 
         public void TurnOff() {
             StopRaycaster();
-            //bar?.SetValue(0f);
-            //indicator?.Deactivate();
             _isActive = false;
             audioSource.Pause();
             OnTurnOff.Invoke();
@@ -74,24 +76,44 @@ namespace ISVR {
             OnToggleBoost?.Invoke();
         }
 
-        public void TurnSoundOn() {
-            if (audioSource.enabled) return;
-            audioSource.enabled = true;
+        public void Toggle20KMode() {
+            if (!IsActive) return;
+            _is20KModeOn = !_is20KModeOn;
+            OnToggle20KMode?.Invoke();
         }
 
-        public void TurnSoundOff() {
-            if (!audioSource.enabled) return;
-            audioSource.enabled = false;
+        public void ToggleRadioChannel() {
+            if (!IsActive) return;
+            _isRadioChannelOn = !_isRadioChannelOn;
+            OnToggleChannel?.Invoke();
         }
 
         public void ToggleSound() {
             if (!IsActive) return;
-            if (audioSource.enabled) {
-                TurnSoundOff();
-            } else {
-                TurnSoundOn();
-            }
+
+            _currentHarmonic = _currentHarmonic == Harmonic.Second ? Harmonic.Third : Harmonic.Second;
+
             OnToggleSound?.Invoke();
+        }
+
+        public void AttenuationUp() {
+            if (!IsActive) return;
+            int lastIndex = _currentAttenuationIndex++;
+            if (_currentAttenuationIndex > _attenuation.Length - 1) {
+                _currentAttenuationIndex = lastIndex;
+            } else {
+                OnAttenuationUp?.Invoke();
+            }
+        }
+
+        public void AttenuationDown() {
+            if (!IsActive) return;
+            int lastIndex = _currentAttenuationIndex--;
+            if (_currentAttenuationIndex < 0) {
+                _currentAttenuationIndex = lastIndex;
+            } else {
+                OnAttenuationDown?.Invoke();
+            }
         }
 
         public void VolumeUp(float value = 0.1f) {
@@ -134,6 +156,9 @@ namespace ISVR {
 
             secondHarmonic.SetTrackValue(secondHarmonicMaxValue);
             thirdHarmonic.SetTrackValue(thirdHarmonicMaxValue);
+
+            secondHarmonicGhost.SetTrackValue(secondHarmonicMaxValue);
+            thirdHarmonicGhost.SetTrackValue(thirdHarmonicMaxValue);
 
             switch (_currentHarmonic) {
                 case Harmonic.Second:
