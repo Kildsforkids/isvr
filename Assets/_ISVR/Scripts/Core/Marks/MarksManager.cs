@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ISVR.UI;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ISVR.Core.Marks {
@@ -9,7 +11,9 @@ namespace ISVR.Core.Marks {
         [SerializeField] private List<MarkTypeSO> markTypesSO;
         [SerializeField] private ObjectPooler objectPooler;
         [SerializeField] private int marksMaxCount;
-        [SerializeField] private List<Mark> marks;
+        [SerializeField] private Counter wiretapperMarksCounter;
+        [SerializeField] private Counter questionMarksCounter;
+        [SerializeField] private Counter electronicMarksCounter;
 
         [Header("Markers")]
         [SerializeField] private Marker leftMarker;
@@ -25,6 +29,7 @@ namespace ISVR.Core.Marks {
         public LayerMask LayerMask => layerMask;
         public float MaxDistance => maxDistance;
         public float DeactivateTime => deactivateTime;
+        public List<Mark> ActiveMarks => objectPooler.GetComponentsInChildren<Mark>().ToList();
 
         private int _lastId => markTypesSO.Count - 1;
         private int _id;
@@ -32,7 +37,6 @@ namespace ISVR.Core.Marks {
         private void Start() {
             Select(0);
             objectPooler.Init(marksMaxCount);
-            marks = new List<Mark>(objectPooler.GetComponentsInChildren<Mark>(true));
             leftMarker.SetMarksManager(this);
             rightMarker.SetMarksManager(this);
         }
@@ -76,6 +80,37 @@ namespace ISVR.Core.Marks {
         public void ReturnMarkToPool(Mark mark) {
             objectPooler.AddToPool(mark.gameObject);
         }
+
+        public void AddToCounter(MarkType markType) {
+            switch (markType) {
+                case MarkType.Electronic:
+                    electronicMarksCounter.Add();
+                    break;
+                case MarkType.Question:
+                    questionMarksCounter.Add();
+                    break;
+                case MarkType.Wiretapper:
+                    wiretapperMarksCounter.Add();
+                    break;
+            }
+        }
+
+        public void RemoveFromCounter(MarkType markType) {
+            switch (markType) {
+                case MarkType.Electronic:
+                    electronicMarksCounter.Subtract();
+                    break;
+                case MarkType.Question:
+                    questionMarksCounter.Subtract();
+                    break;
+                case MarkType.Wiretapper:
+                    wiretapperMarksCounter.Subtract();
+                    break;
+            }
+        }
+
+        public List<Mark> GetMarksOfType(MarkType type) =>
+            ActiveMarks.Where(mark => mark.MarkTypeSO.Type == type).ToList();
 
         private void Select(int id) {
             if (id < 0) {

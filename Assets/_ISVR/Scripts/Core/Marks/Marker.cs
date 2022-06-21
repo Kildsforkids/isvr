@@ -160,12 +160,14 @@ namespace ISVR.Core.Marks {
             if (mark != null) {
                 mark.ChangeType(ghost.MarkTypeSO);
                 mark.SetPosition(_hit.point);
+                marksManager.AddToCounter(mark.MarkTypeSO.Type);
             }
         }
 
         private void RemoveMark(MarksManager marksManager) {
             if (!_selectedMark) return;
             marksManager.ReturnMarkToPool(_selectedMark);
+            marksManager.RemoveFromCounter(_selectedMark.MarkTypeSO.Type);
         }
 
         private void ChangeState(MarkerState state) {

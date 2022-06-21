@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
-using Oculus.Interaction.Input;
 using ISVR.Core.Bugs;
 using ISVR.UI;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace ISVR {
 
@@ -41,10 +39,6 @@ namespace ISVR {
             Instance = this;
             Application.targetFrameRate = targetFrameRate;
             OnAwake?.Invoke();
-        }
-
-        private void Start() {
-            // StartCoroutine(FPSUpdateCoroutine());
         }
 
         public void AddBug(Bug bug) {
@@ -83,18 +77,12 @@ namespace ISVR {
         public void EndLevel() {
             if (_isLevelEnded) return;
             float result = CalculatePredictResult();
-            // resultText.text = $"{(result * 100f):0.##}%";
-            // resultText.enabled = true;
             _isLevelEnded = true;
         }
 
         public void RestartScene() {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
-        //public bool FindInStopList(Transform transform) {
-        //    return bugMarksStopList.Contains(transform);
-        //}
 
         private float CalculatePredictResult() {
             int bugMarksCount = 0;
@@ -151,14 +139,6 @@ namespace ISVR {
                 }
             }
             return nearestBugMark;
-        }
-
-        private IEnumerator FPSUpdateCoroutine() {
-            var waitForSeconds = new WaitForSeconds(1f);
-            while (true) {
-                fpsText.text = (Time.frameCount / Time.time).ToString("F0");
-                yield return waitForSeconds;
-            }
         }
     }
 }

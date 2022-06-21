@@ -1,7 +1,6 @@
+using ISVR.Core.Devices;
 using System.Collections.Generic;
 using UnityEngine;
-using ISVR.Core.Bugs;
-using ISVR.Core.Devices;
 
 namespace ISVR {
 
@@ -31,9 +30,6 @@ namespace ISVR {
 
         private bool TrySpawn(Transform spawner) {
             if (spawner.TryGetComponent(out Wiretapper wiretapper)) return false;
-            //if (spawner.TryGetComponent(out Electronic electronic)) {
-            //    Destroy(electronic);
-            //}
             wiretapper = spawner.gameObject.AddComponent<Wiretapper>();
             wiretapper.SetHarmonicsValue(30f, 5f);
             return true;

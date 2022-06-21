@@ -13,5 +13,9 @@ namespace ISVR.Core.Marks {
         public void Deselect() {
             meshRenderer.material.color = MarkTypeSO.Color;
         }
+
+        public void MarkAsCorrect(Color color) {
+            meshRenderer.material.color = color;
+        }
     }
 }
