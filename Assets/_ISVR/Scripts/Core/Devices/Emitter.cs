@@ -8,5 +8,10 @@ namespace ISVR.Core.Devices {
 
         public float SecondHarmonicValue => secondHarmonicValue;
         public float ThirdHarmonicValue => thirdHarmonicValue;
+
+        public void SetHarmonicsValue(float second, float third) {
+            secondHarmonicValue = second;
+            thirdHarmonicValue = third;
+        }
     }
 }

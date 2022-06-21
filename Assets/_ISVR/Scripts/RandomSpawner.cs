@@ -30,11 +30,12 @@ namespace ISVR {
         }
 
         private bool TrySpawn(Transform spawner) {
-            if (spawner.TryGetComponent(out Bug bug)) return false;
-            if (spawner.TryGetComponent(out Electronic electrical)) {
-                Destroy(electrical);
-            }
-            var bugComponent = spawner.gameObject.AddComponent<Bug>();
+            if (spawner.TryGetComponent(out Wiretapper wiretapper)) return false;
+            //if (spawner.TryGetComponent(out Electronic electronic)) {
+            //    Destroy(electronic);
+            //}
+            wiretapper = spawner.gameObject.AddComponent<Wiretapper>();
+            wiretapper.SetHarmonicsValue(30f, 5f);
             return true;
         }
     }
