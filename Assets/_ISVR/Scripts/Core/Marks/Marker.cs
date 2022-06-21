@@ -96,10 +96,14 @@ namespace ISVR.Core.Marks {
                 _isActive = true;
             }
 
+            UpdateActiveState();
+        }
+
+        public void UpdateActiveState() {
+            if (!_isActive) return;
             if (_deactiveCoroutine != null) {
                 StopCoroutine(_deactiveCoroutine);
             }
-
             _deactiveCoroutine = StartCoroutine(DeactivateCoroutine(_marksManager.DeactivateTime));
         }
 

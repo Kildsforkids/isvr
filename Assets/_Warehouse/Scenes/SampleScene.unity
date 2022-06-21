@@ -6394,7 +6394,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3206607030b46f34c892b71c307f8464, type: 2}
   objectPooler: {fileID: 1356147444}
   marksMaxCount: 10
-  marks: []
   wiretapperMarksCounter: {fileID: 6530798933473346300}
   questionMarksCounter: {fileID: 6530798934125663249}
   electronicMarksCounter: {fileID: 6530798932473860665}
@@ -12450,7 +12449,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8158615387924667499, guid: 2e272d6baa75c304ba6c884734cc8eb2, type: 3}
   m_PrefabInstance: {fileID: 1045034854315619325}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &874031437
+--- !u!114 &874031438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16594,7 +16593,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1045034854952230435, guid: 2e272d6baa75c304ba6c884734cc8eb2, type: 3}
   m_PrefabInstance: {fileID: 1045034854315619325}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1211971434
+--- !u!114 &1211971435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19627,7 +19626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1488876686
 Transform:
   m_ObjectHideFlags: 0
@@ -39558,7 +39557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &4634743112267754668
 GameObject:
   m_ObjectHideFlags: 0

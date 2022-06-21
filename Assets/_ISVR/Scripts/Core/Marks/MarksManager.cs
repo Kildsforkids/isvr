@@ -41,45 +41,47 @@ namespace ISVR.Core.Marks {
             rightMarker.SetMarksManager(this);
         }
 
-        public void ActivateLeftMarker() {
+        public void ActivateLeftMarker() =>
             leftMarker.Show();
-        }
 
-        public void ActivateRightMarker() {
+        public void ActivateRightMarker() =>
             rightMarker.Show();
-        }
 
-        public void ToggleLeftMarker() {
+        public void UpdateLeftMarkerActiveState() =>
+            leftMarker.UpdateActiveState();
+
+        public void UpdateRightMarkerActiveState() =>
+            rightMarker.UpdateActiveState();
+
+        public void ToggleLeftMarker() =>
             leftMarker.Toggle();
-        }
 
-        public void ToggleRightMarker() {
+        public void ToggleRightMarker() =>
             rightMarker.Toggle();
-        }
 
-        public void UseLeftMarker() {
+        public void UseLeftMarker() =>
             leftMarker.Use(this);
-        }
 
-        public void UseRightMarker() {
+        public void UseRightMarker() =>
             rightMarker.Use(this);
-        }
 
         public void SelectNext() {
             Select(++_id);
+            UpdateLeftMarkerActiveState();
+            UpdateRightMarkerActiveState();
         }
 
         public void SelectPrevious() {
             Select(--_id);
+            UpdateLeftMarkerActiveState();
+            UpdateRightMarkerActiveState();
         }
 
-        public Mark GetMarkFromPool() {
-            return objectPooler.GetFromPool<Mark>();
-        }
+        public Mark GetMarkFromPool() =>
+            objectPooler.GetFromPool<Mark>();
 
-        public void ReturnMarkToPool(Mark mark) {
+        public void ReturnMarkToPool(Mark mark) =>
             objectPooler.AddToPool(mark.gameObject);
-        }
 
         public void AddToCounter(MarkType markType) {
             switch (markType) {
