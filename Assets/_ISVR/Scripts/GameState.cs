@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using ISVR.Core.Devices;
 using ISVR.Core.Managers;
 using ISVR.Core.Marks;
+using ISVR.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ namespace ISVR {
 
         [SerializeField] private TaskManager taskManager;
         [SerializeField] private MarksManager marksManager;
+        [SerializeField] private ResultWindow resultWindow;
         [SerializeField] private List<Wiretapper> wiretappers;
         [SerializeField] private List<Electronic> electronics;
 
@@ -34,9 +36,10 @@ namespace ISVR {
             int foundWiretappersCount = taskManager.CalculatePredictResult(wiretappers, wiretapperMarks);
             int foundElectronicsCount = taskManager.CalculatePredictResult(electronics, electronicMarks);
 
-            Debug.Log($"[<color=cyan>Game</color>] " +
-                $"Wiretappers: {foundWiretappersCount} / {wiretappers.Count} | " +
-                $"Electronics: {foundElectronicsCount} / {electronics.Count}");
+            resultWindow.UpdateWiretappersResultValue(foundWiretappersCount, wiretappers.Count);
+            resultWindow.UpdateElectronicsResultValue(foundElectronicsCount, electronics.Count);
+
+            resultWindow.Show();
 
             _isTaskEnded = true;
         }

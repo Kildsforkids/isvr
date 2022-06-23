@@ -214,6 +214,9 @@ namespace Oculus.Interaction
             Rigidbody body = go.AddComponent<Rigidbody>();
             body.useGravity = false;
             body.isKinematic = false;
+
+            DontDestroyOnLoad(go);
+
             return body;
         }
 
