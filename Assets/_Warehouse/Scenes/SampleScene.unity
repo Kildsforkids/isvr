@@ -2185,6 +2185,14 @@ PrefabInstance:
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7494168683213444748, guid: 45f842ce8eb55f348a54a1f8774e942c, type: 3}
+      propertyPath: MaxDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494168683213444748, guid: 45f842ce8eb55f348a54a1f8774e942c, type: 3}
+      propertyPath: MinDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7494168683214926158, guid: 45f842ce8eb55f348a54a1f8774e942c, type: 3}
       propertyPath: m_Camera
       value: 
@@ -8408,7 +8416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &512028586
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14564,7 +14572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &916960819
 Transform:
   m_ObjectHideFlags: 0
@@ -24721,7 +24729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7920068808236201455, guid: fcf0c36dab346f74ebf9587ff467ec03, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7920068808236201455, guid: fcf0c36dab346f74ebf9587ff467ec03, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24785,7 +24793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1717430072
 Transform:
   m_ObjectHideFlags: 0
@@ -31326,7 +31334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &919132148324952160
 GameObject:
   m_ObjectHideFlags: 0
@@ -53266,7 +53274,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 100
+  far clip plane: 50
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -53944,7 +53952,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 100
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -54028,7 +54036,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 100
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
