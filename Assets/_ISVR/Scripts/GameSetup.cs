@@ -37,7 +37,7 @@ namespace ISVR {
             bugMarks = new BugMark[bugMarksMaxCount];
             _correctBugMarks = new List<BugMark>();
             Instance = this;
-            Application.targetFrameRate = targetFrameRate;
+            //Application.targetFrameRate = targetFrameRate;
             OnAwake?.Invoke();
         }
 

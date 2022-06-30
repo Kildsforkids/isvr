@@ -14,7 +14,6 @@ namespace ISVR {
             ClearPool();
             for (int i = 0; i < count; i++) {
                 var go = Instantiate(poolObject, transform);
-                //var component = go.GetComponent<T>();
                 go.SetActive(false);
                 pool.Enqueue(go);
             }
@@ -29,7 +28,6 @@ namespace ISVR {
 
         public void AddToPool(GameObject go) {
             go.SetActive(false);
-            //var component = go.GetComponent<T>();
             pool.Enqueue(go);
         }
 

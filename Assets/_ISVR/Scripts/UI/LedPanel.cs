@@ -7,9 +7,17 @@ namespace ISVR.UI {
         private List<IActivateable> leds = new List<IActivateable>();
 
         private void Start() {
+            Transform children;
+            IActivateable childrenActivateable;
             for (int i = 0; i < transform.childCount; i++) {
-                if (transform.GetChild(i).TryGetComponent(out IActivateable activateable)) {
+                children = transform.GetChild(i);
+                if (children.TryGetComponent(out IActivateable activateable)) {
                     leds.Add(activateable);
+                } else {
+                    childrenActivateable = children.GetComponentInChildren<IActivateable>();
+                    if (childrenActivateable != null) {
+                        leds.Add(childrenActivateable);
+                    }
                 }
             }
         }
