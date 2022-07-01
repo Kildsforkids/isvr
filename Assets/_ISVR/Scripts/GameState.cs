@@ -14,7 +14,9 @@ namespace ISVR {
 
         [SerializeField] private TaskManager taskManager;
         [SerializeField] private MarksManager marksManager;
-        [SerializeField] private ResultWindow resultWindow;
+        //[SerializeField] private ResultWindow resultWindow;
+        [SerializeField] private GameObject additionalPanel;
+        [SerializeField] private ResultTable resultTable;
         [SerializeField] private List<Wiretapper> wiretappers;
         [SerializeField] private List<Electronic> electronics;
 
@@ -36,10 +38,21 @@ namespace ISVR {
             int foundWiretappersCount = taskManager.CalculatePredictResult(wiretappers, wiretapperMarks);
             int foundElectronicsCount = taskManager.CalculatePredictResult(electronics, electronicMarks);
 
-            resultWindow.UpdateWiretappersResultValue(foundWiretappersCount, wiretappers.Count);
-            resultWindow.UpdateElectronicsResultValue(foundElectronicsCount, electronics.Count);
+            //resultWindow.UpdateWiretappersResultValue(foundWiretappersCount, wiretappers.Count);
+            //resultWindow.UpdateElectronicsResultValue(foundElectronicsCount, electronics.Count);
+            resultTable.UpdateValue(0, 0, wiretapperMarks.Count);
+            resultTable.UpdateValue(1, 0, electronicMarks.Count);
 
-            resultWindow.Show();
+            resultTable.UpdateValue(0, 1, foundWiretappersCount);
+            resultTable.UpdateValue(1, 1, foundElectronicsCount);
+
+            resultTable.UpdateValue(0, 2, wiretappers.Count);
+            resultTable.UpdateValue(1, 2, electronics.Count);
+
+            additionalPanel.SetActive(false);
+            resultTable.gameObject.SetActive(true);
+
+            //resultWindow.Show();
 
             _isTaskEnded = true;
         }
