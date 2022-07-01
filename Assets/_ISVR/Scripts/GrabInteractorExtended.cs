@@ -11,23 +11,12 @@ namespace ISVR {
 
         private bool isGrabbed;
 
-        protected override void InteractableSelected(GrabInteractable interactable) {
-            if (isGrabbed) {
-                base.InteractableUnselected(interactable);
-                player.RemoveGrabbable(controller);
-                isGrabbed = false;
-            } else {
-                base.InteractableSelected(interactable);
-                if (interactable.TryGetComponent(out GrabbableExtended grabbableExtended)) {
-                    player.AddGrabbable(grabbableExtended, controller);
-                }
-                isGrabbed = true;
-            }
+        protected override void Awake() {
+            base.Awake();
+            WhenInteractableSelected.Action += HideController;
         }
 
-        protected override void InteractableUnselected(GrabInteractable interactable) {
-            // base.InteractableUnselected(interactable);
-            // player.RemoveGrabbable(controller);
+        private void HideController(GrabInteractable grabInteractable) {
         }
     }
 }
